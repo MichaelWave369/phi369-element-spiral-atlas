@@ -48,3 +48,16 @@ This project is a visualization and research-notebook tool for exploring pattern
 npm install
 npm run dev
 ```
+
+## Live demo
+
+Once GitHub Pages is enabled, the public demo will be available at:
+
+https://michaelwave369.github.io/phi369-element-spiral-atlas/
+
+To enable it:
+
+1. Open repository Settings
+2. Go to Pages
+3. Under Build and deployment, set Source to GitHub Actions
+4. Push to main or run the Deploy Pages workflow manually
