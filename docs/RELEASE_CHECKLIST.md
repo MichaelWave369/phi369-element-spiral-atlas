@@ -10,3 +10,4 @@
 - [ ] Deploy Pages workflow succeeds
 - [ ] Live demo URL loads
 - [ ] Vite base path matches repository name
+- [ ] GitHub Actions workflow does not enable npm cache unless package-lock.json exists

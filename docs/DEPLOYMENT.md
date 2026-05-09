@@ -21,3 +21,8 @@ Because this is a project page, vite.config.js must use:
 ```js
 base: "/phi369-element-spiral-atlas/"
 ```
+
+## Troubleshooting
+
+If the workflow fails with “Dependencies lock file is not found,” remove npm caching from actions/setup-node or commit a package-lock.json. This public-alpha workflow intentionally avoids caching until a lockfile is committed.
+
