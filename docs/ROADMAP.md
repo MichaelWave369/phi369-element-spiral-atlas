@@ -15,3 +15,10 @@
 - Notebook persistence
 - Export pipeline (SVG/PNG/JSON)
 - Lab report compiler and shareable bundles
+
+## v2.1 Data Core
+- Extract base element data into src/data/elementsBase.js
+- Extract seeded property data into src/data/propertySeeds.js
+- Extract constants and metadata
+- Add data validation module
+- Add data provenance documentation

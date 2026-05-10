@@ -25,3 +25,7 @@
 - [ ] RELEASE_NOTES.md exists
 - [ ] Screenshots are added, or screenshot placeholder is documented
 - [ ] Tag v0.1.0-public-alpha is ready to create
+
+- [ ] Data provenance doc updated
+- [ ] Data validation passes without console errors
+- [ ] Ghost nodes 119/120 remain labeled future/unconfirmed

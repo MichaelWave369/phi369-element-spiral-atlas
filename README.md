@@ -63,3 +63,8 @@ npm run dev
 ## Live demo deployment
 
 GitHub Pages is configured to deploy from GitHub Actions using the repository workflow.
+
+
+## Data status
+
+The current public alpha uses a seeded scientific-property dataset for interface development. Missing values are shown as unknown/null. See docs/DATA_PROVENANCE.md for data boundaries and future data-curation plans.
