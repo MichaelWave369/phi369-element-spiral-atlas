@@ -56,3 +56,12 @@ The source registry now tracks:
 - licenseNote
 
 These fields support future data-review and redistribution discipline.
+
+
+## v2.7 electron configuration sources
+
+electronConfiguration batch values reference:
+- rsc
+- pubchem
+
+Future versions should add per-field retrieval dates and source-specific notes.
