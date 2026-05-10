@@ -210,6 +210,21 @@ function buttonStyle(active = false) {
   };
 }
 
+function detailsPanelStyle(extra = {}) {
+  return {
+    ...cardStyle({ padding: 16 }),
+    overflow: "hidden",
+    ...extra,
+  };
+}
+
+const summaryStyle = {
+  cursor: "pointer",
+  fontWeight: 800,
+  fontSize: 16,
+  listStyle: "none",
+};
+
 function digitalRoot(n) {
   if (!Number.isFinite(n) || n <= 0) return 0;
   return ((Math.trunc(n) - 1) % 9) + 1;
@@ -1359,10 +1374,10 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.0.1</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.0.2</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.0.1 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.0.2 research lab, correlation engine, and protocol compiler</p>
         </header>
 
         <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
@@ -1562,8 +1577,21 @@ export default function ElementSpiralAtlas() {
               </div>
             </section>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Insight engine</h2>
+                      </aside>
+        </main>
+
+        <section style={{ marginTop: 12 }}>
+          <p style={{ margin: 0, fontSize: 12, color: "#64748b" }}>Advanced panels are grouped below so the atlas remains the visual center.</p>
+        </section>
+
+        <section style={cardStyle({ marginTop: 16, padding: 16 })}>
+          <div style={{ marginBottom: 12 }}>
+            <h2 style={{ margin: "0 0 4px", fontSize: 22 }}>Research Workbench</h2>
+            <p style={{ margin: 0, color: "#64748b", fontSize: 13 }}>Advanced analysis, notebook, frontier, and data panels.</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : viewportWidth < 1500 ? "repeat(2, minmax(0, 1fr))" : "repeat(3, minmax(0, 1fr))", gap: 12, alignItems: "start" }}>
+<details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Insight engine</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v1.5 converts the active atlas state into a lightweight research receipt and data-driven prompts for deeper investigation.</p>
               <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1586,10 +1614,10 @@ export default function ElementSpiralAtlas() {
                 </div>
                 <button style={buttonStyle(false)} onClick={() => navigator?.clipboard?.writeText?.(JSON.stringify(atlasReceipt, null, 2))}>Copy receipt JSON</button>
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>v2.0.1 Research Lab</h2>
+            <details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>v2.0.2 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1636,10 +1664,10 @@ export default function ElementSpiralAtlas() {
                   </div>
                 )}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Research notebook</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Research notebook</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v2.0 pairs the notebook with lab protocols, correlation checks, and report-ready exports.</p>
               <textarea
                 value={researchNote}
@@ -1679,10 +1707,10 @@ export default function ElementSpiralAtlas() {
                   ))}
                 </div>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Comparison lens</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Comparison lens</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compare the selected element against a second element without changing the active node.</p>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
                 <input type="number" min="1" max={showFuture ? 120 : 118} value={compareZ} onChange={(event) => setCompareZ(Math.max(1, Math.min(showFuture ? 120 : 118, Number(event.target.value) || 1)))} style={{ width: 84, border: "1px solid #cbd5e1", borderRadius: 12, padding: "8px 9px", fontSize: 13 }} />
@@ -1704,10 +1732,10 @@ export default function ElementSpiralAtlas() {
                   </div>
                 </div>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Active overlay stats</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Active overlay stats</summary>
               {activePropertyStats ? (
                 <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                   <div><b>{activePropertyStats.label}</b> coverage: {activePropertyStats.count}/118</div>
@@ -1718,18 +1746,18 @@ export default function ElementSpiralAtlas() {
               ) : (
                 <p style={{ margin: 0, fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Switch to a numeric heatmap overlay to see min / max / average summaries.</p>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Data completeness</h2>
+            <details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Data completeness</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v1.1 tracks scientific-property coverage and separates seeded values from unknown/null fields.</p>
               <CompletenessPanel report={completenessReport} />
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}><h2 style={{ margin: "0 0 10px", fontSize: 16 }}>Legend</h2><Legend overlay={overlay} /></section>
-            <section style={cardStyle({ padding: 16 })}><h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Claim discipline</h2><p style={{ margin: 0, fontSize: 14, lineHeight: 1.52, color: "#475569" }}>This atlas is an alternate visualization of known element data. It can compare patterns, highlight superheavy frontier zones, and test correlations, but it does not claim new elements without experimental evidence.</p></section>
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Next frontier</h2>
+            <details style={detailsPanelStyle()}><summary style={summaryStyle}>Legend</summary><Legend overlay={overlay} /></details>
+            <details style={detailsPanelStyle()}><summary style={summaryStyle}>Claim discipline</summary><p style={{ margin: "10px 0 0", fontSize: 14, lineHeight: 1.52, color: "#475569" }}>This atlas is an alternate visualization of known element data. It can compare patterns, highlight superheavy frontier zones, and test correlations, but it does not claim new elements without experimental evidence.</p></details>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Next frontier</summary>
               <p style={{ margin: 0, fontSize: 14, lineHeight: 1.52, color: "#475569" }}>Ghost nodes 119 and 120 are future/unconfirmed placeholders. The corridor score below is geometry-only and is not an experimental discovery claim.</p>
               <div style={{ marginTop: 12, display: "flex", gap: 8 }}><button style={buttonStyle(selectedZ === 119)} onClick={() => setSelectedZ(119)}>E119</button><button style={buttonStyle(selectedZ === 120)} onClick={() => setSelectedZ(120)}>E120</button></div>
               <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
@@ -1740,10 +1768,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Isotope stability preview</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Isotope stability preview</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Educational N/Z and magic-number lens for the selected element. This is a heuristic preview only.</p>
               {isotopeCandidate && (
                 <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
@@ -1766,10 +1794,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Harmonic families</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Harmonic families</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Root-family counts for known elements. Use the Harmonic Lens control to isolate a family on the atlas.</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
                 {harmonicSummary.map((item) => (
@@ -1779,10 +1807,10 @@ export default function ElementSpiralAtlas() {
                 ))}
               </div>
               <button style={{ ...buttonStyle(harmonicFilter === "all"), marginTop: 8 }} onClick={() => setHarmonicFilter("all")}>Show all roots</button>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Nearest seeded matches</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Nearest seeded matches</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Similarity uses available seeded numeric properties, with tiny bonuses for matching family or digital root.</p>
               <div style={{ display: "grid", gap: 8 }}>
                 {similarityScan.map((item) => (
@@ -1792,10 +1820,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Pattern scanner</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Pattern scanner</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compares seeded scientific values across the 3-line, 6-line, and 9-line digital-root families.</p>
               <div style={{ display: "grid", gap: 10 }}>
                 {patternScan.map((scan) => (
@@ -1807,12 +1835,13 @@ export default function ElementSpiralAtlas() {
                   </div>
                 ))}
               </div>
-            </section>
-          </aside>
-        </main>
+            </details>
+
+          </div>
+        </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.0.1 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.0.2 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>
