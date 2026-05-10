@@ -65,3 +65,8 @@ v2.5 fills a simplified phase-at-STP and occurrence layer for confirmed elements
 ## v2.6 source metadata and electron configuration seed
 
 v2.6 adds retrieval-date and license-note metadata to source registry entries. It also begins electronConfiguration curation for elements 1–18 only. This is a limited seed batch, not a complete electron-configuration table.
+
+
+## v2.7 electron configuration batch
+
+v2.7 extends electronConfiguration coverage from the first 18 elements through Kr (Z=36). This is still a limited curated seed layer and should be validated against source references before being treated as authoritative.

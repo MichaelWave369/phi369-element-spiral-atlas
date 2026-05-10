@@ -54,3 +54,8 @@
 - [ ] Source maps remain enabled
 - [ ] Runtime safety docs updated
 - [ ] Array-safe render posture preserved
+
+- [ ] electronConfiguration coverage through Z=36 tested
+- [ ] Cr/Cu exception configurations tested
+- [ ] Kr endpoint tested
+- [ ] later elements remain null-safe

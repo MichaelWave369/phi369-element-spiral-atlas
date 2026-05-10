@@ -103,3 +103,5 @@ v2.6 adds source retrieval metadata and a limited electron-configuration seed ba
 The public demo includes a static loading fallback, React error boundary, and source maps so runtime data-shape issues can be debugged instead of producing a blank page.
 
 See docs/RUNTIME_SAFETY.md.
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr), with sourceRefs and tests. Later elements remain null-safe until curated.

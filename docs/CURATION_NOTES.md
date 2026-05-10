@@ -49,3 +49,16 @@ v2.6 adds:
 
 Boundary:
 Electron configurations remain incomplete outside elements 1–18. Missing values remain null and should not be guessed.
+
+
+## v2.7 Electron Configuration Batch 2
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr).
+
+Scope:
+- elements 1–36 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Kr are intentionally not filled in this pass.

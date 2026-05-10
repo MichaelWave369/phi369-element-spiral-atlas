@@ -82,3 +82,15 @@
 - Document runtime safety model
 - Preserve source maps for debugging
 - Confirm array-safe rendering posture
+
+
+## v2.7 Electron Configuration Batch 2
+- Expand electronConfiguration coverage through Kr
+- Preserve Cr/Cu ground-state exception values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Add additional exception regression checks
+- Continue staged sourceRefs and sourceNotes
