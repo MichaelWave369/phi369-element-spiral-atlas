@@ -62,3 +62,15 @@
 - Refine occurrence categories
 - Begin electron-configuration batch
 - Add per-field source notes
+
+## v2.6 Data Batch 2
+- Add source retrieval metadata
+- Add sourceNotes schema support
+- Add limited electron-configuration batch for elements 1–18
+- Add validation/tests for source metadata and electronConfiguration batch
+
+## v2.7 Electron Configuration Batch 2
+- Expand electronConfiguration coverage beyond Ar
+- Add source notes and retrieval dates per batch
+- Add fixture tests for expanded coverage
+- Keep null-safe incomplete fields

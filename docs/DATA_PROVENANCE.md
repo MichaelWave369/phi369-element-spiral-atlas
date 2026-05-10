@@ -61,3 +61,7 @@ v2.3 begins limited curation for phase-at-STP and occurrence on a small reliable
 ## v2.5 phase/occurrence batch
 
 v2.5 fills a simplified phase-at-STP and occurrence layer for confirmed elements. These fields are intended for interface overlays and completeness tracking, not as a substitute for authoritative chemical references.
+
+## v2.6 source metadata and electron configuration seed
+
+v2.6 adds retrieval-date and license-note metadata to source registry entries. It also begins electronConfiguration curation for elements 1–18 only. This is a limited seed batch, not a complete electron-configuration table.

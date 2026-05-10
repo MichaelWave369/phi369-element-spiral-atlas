@@ -42,3 +42,8 @@
 - [ ] occurrence coverage tested
 - [ ] 119/120 future-unconfirmed status tested
 - [ ] sourceRefs for curated phase/occurrence fields tested
+
+- [ ] source retrieval metadata validates
+- [ ] sourceNotes schema validates
+- [ ] electronConfiguration batch 1 validates
+- [ ] incomplete electronConfiguration fields remain null-safe

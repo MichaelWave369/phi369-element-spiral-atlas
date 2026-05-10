@@ -39,3 +39,13 @@ Scope:
 
 Boundary:
 This is a simplified public-alpha classification. Future versions may refine occurrence categories such as trace-natural, primordial, decay-chain, or synthetic-only.
+
+## v2.6 Data Batch 2
+
+v2.6 adds:
+- source retrieval metadata in the property source registry
+- sourceNotes schema support
+- limited electron-configuration seed batch for elements 1–18
+
+Boundary:
+Electron configurations remain incomplete outside elements 1–18. Missing values remain null and should not be guessed.

@@ -48,3 +48,11 @@ phaseAtSTP and occurrence sourceRefs use:
 - iupac where applicable for occurrence/identity boundaries
 
 Future versions should add retrieval dates and per-field citations.
+
+## v2.6 source metadata
+
+The source registry now tracks:
+- retrievalDate
+- licenseNote
+
+These fields support future data-review and redistribution discipline.

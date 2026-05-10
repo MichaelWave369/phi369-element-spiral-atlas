@@ -13,12 +13,17 @@ export const EMPTY_ELEMENT_PROPERTIES = {
   halfLife: null,
   decayMode: null,
   sourceRefs: null,
+  sourceNotes: null,
   stable: null,
   discovered: null,
 };
 
 export const PROPERTY_SEEDS = {
   1: {
+    sourceNotes: {
+      electronConfiguration: "v2.6 limited first-18 seed batch; verify before treating as authoritative."
+    },
+    electronConfiguration: "1s1",
     atomicMass: 1.008,
     electronegativity: 2.2,
     ionization: 13.598,
@@ -39,12 +44,20 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1766
   },
   2: {
+    sourceNotes: {
+      electronConfiguration: "v2.6 limited first-18 seed batch; verify before treating as authoritative."
+    },
+    electronConfiguration: "1s2",
     atomicMass: 4.0026,
     electronegativity: null,
     ionization: 24.587,
@@ -65,12 +78,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1895
   },
   3: {
+    electronConfiguration: "[He] 2s1",
     atomicMass: 6.94,
     electronegativity: 0.98,
     ionization: 5.392,
@@ -91,12 +109,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1817
   },
   4: {
+    electronConfiguration: "[He] 2s2",
     atomicMass: 9.0122,
     electronegativity: 1.57,
     ionization: 9.323,
@@ -117,12 +140,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1798
   },
   5: {
+    electronConfiguration: "[He] 2s2 2p1",
     atomicMass: 10.81,
     electronegativity: 2.04,
     ionization: 8.298,
@@ -143,12 +171,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1808
   },
   6: {
+    electronConfiguration: "[He] 2s2 2p2",
     atomicMass: 12.011,
     electronegativity: 2.55,
     ionization: 11.26,
@@ -169,12 +202,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: -3750
   },
   7: {
+    electronConfiguration: "[He] 2s2 2p3",
     atomicMass: 14.007,
     electronegativity: 3.04,
     ionization: 14.534,
@@ -195,12 +233,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1772
   },
   8: {
+    electronConfiguration: "[He] 2s2 2p4",
     atomicMass: 15.999,
     electronegativity: 3.44,
     ionization: 13.618,
@@ -221,12 +264,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1774
   },
   9: {
+    electronConfiguration: "[He] 2s2 2p5",
     atomicMass: 18.998,
     electronegativity: 3.98,
     ionization: 17.423,
@@ -247,12 +295,20 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1886
   },
   10: {
+    sourceNotes: {
+      electronConfiguration: "v2.6 limited first-18 seed batch; verify before treating as authoritative."
+    },
+    electronConfiguration: "[He] 2s2 2p6",
     atomicMass: 20.18,
     electronegativity: null,
     ionization: 21.565,
@@ -273,12 +329,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1898
   },
   11: {
+    electronConfiguration: "[Ne] 3s1",
     atomicMass: 22.99,
     electronegativity: 0.93,
     ionization: 5.139,
@@ -299,12 +360,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1807
   },
   12: {
+    electronConfiguration: "[Ne] 3s2",
     atomicMass: 24.305,
     electronegativity: 1.31,
     ionization: 7.646,
@@ -325,12 +391,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1755
   },
   13: {
+    electronConfiguration: "[Ne] 3s2 3p1",
     atomicMass: 26.982,
     electronegativity: 1.61,
     ionization: 5.986,
@@ -351,12 +422,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1825
   },
   14: {
+    electronConfiguration: "[Ne] 3s2 3p2",
     atomicMass: 28.085,
     electronegativity: 1.9,
     ionization: 8.152,
@@ -377,12 +453,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1824
   },
   15: {
+    electronConfiguration: "[Ne] 3s2 3p3",
     atomicMass: 30.974,
     electronegativity: 2.19,
     ionization: 10.487,
@@ -403,12 +484,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1669
   },
   16: {
+    electronConfiguration: "[Ne] 3s2 3p4",
     atomicMass: 32.06,
     electronegativity: 2.58,
     ionization: 10.36,
@@ -429,12 +515,17 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: -2000
   },
   17: {
+    electronConfiguration: "[Ne] 3s2 3p5",
     atomicMass: 35.45,
     electronegativity: 3.16,
     ionization: 12.968,
@@ -455,12 +546,20 @@ export const PROPERTY_SEEDS = {
         "iupac",
         "rsc",
         "pubchem"
+      ],
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
       ]
     },
     stable: true,
     discovered: 1774
   },
   18: {
+    sourceNotes: {
+      electronConfiguration: "v2.6 limited first-18 seed batch; verify before treating as authoritative."
+    },
+    electronConfiguration: "[Ne] 3s2 3p6",
     atomicMass: 39.948,
     electronegativity: null,
     ionization: 15.76,
@@ -479,6 +578,10 @@ export const PROPERTY_SEEDS = {
       ],
       occurrence: [
         "iupac",
+        "rsc",
+        "pubchem"
+      ],
+      electronConfiguration: [
         "rsc",
         "pubchem"
       ]

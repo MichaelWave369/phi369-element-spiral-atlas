@@ -52,7 +52,7 @@ export function runDataValidation({
     completenessKeys.add(field.key);
   });
   Object.keys(emptyElementProperties).forEach((key) => {
-    if (key === "sourceRefs") return;
+    if (key === "sourceRefs" || key === "sourceNotes") return;
     assert(completenessKeys.has(key), `Completeness fields missing key '${key}'.`);
   });
   const allowedPropertyKeys = new Set(Object.keys(emptyElementProperties));
@@ -78,8 +78,30 @@ export function runDataValidation({
     }
   });
 
+
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  Object.entries(propertySources || {}).forEach(([key, source]) => {
+    assert(source?.id === key, `Property source '${key}' must have matching id.`);
+    assert(typeof source?.name === "string" && source.name.length > 0, `Property source '${key}' missing name.`);
+    assert(typeof source?.url === "string" && source.url.startsWith("https://"), `Property source '${key}' must use https URL.`);
+    assert(typeof source?.type === "string" && source.type.length > 0, `Property source '${key}' missing type.`);
+    assert(typeof source?.retrievalDate === "string" && dateRegex.test(source.retrievalDate), `Property source '${key}' has invalid retrievalDate.`);
+    assert(typeof source?.licenseNote === "string" && source.licenseNote.length > 0, `Property source '${key}' missing licenseNote.`);
+  });
   const sourceIds = new Set(Object.keys(propertySources || {}));
   Object.entries(propertySeeds).forEach(([z, props]) => {
+
+    if (props.sourceNotes !== undefined && props.sourceNotes !== null) {
+      assert(typeof props.sourceNotes === "object" && !Array.isArray(props.sourceNotes), `Property seed sourceNotes for Z=${z} must be an object.`);
+      Object.entries(props.sourceNotes).forEach(([noteKey, noteValue]) => {
+        assert(allowedPropertyKeys.has(noteKey), `Property seed sourceNotes for Z=${z} has unknown key '${noteKey}'.`);
+        assert(typeof noteValue === "string" && noteValue.length > 0, `Property seed sourceNotes for Z=${z}.${noteKey} must be non-empty string.`);
+      });
+    }
+    if (Number(z) >= 1 && Number(z) <= 18) {
+      assert(typeof props.electronConfiguration === "string" && props.electronConfiguration.length > 0, `Z=${z} electronConfiguration required for batch 1.`);
+      assert(Array.isArray(props.sourceRefs?.electronConfiguration), `Z=${z} sourceRefs.electronConfiguration is required.`);
+    }
     if (props.sourceRefs) {
       Object.entries(props.sourceRefs).forEach(([field, ids]) => {
         assert(Array.isArray(ids), `Property seed sourceRefs for Z=${z}.${field} must be an array.`);
