@@ -350,6 +350,10 @@ function buildResonanceGraph(selectedNode, nodes, mode, isotopeN, limit = 14) {
   return { mode: safeMode, edges, summary };
 }
 
+function asArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
 function stableStringify(value) {
   if (value === null || typeof value !== "object") return JSON.stringify(value);
   if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
@@ -1147,7 +1151,7 @@ export default function ElementSpiralAtlas() {
     patternScan,
     activePropertyStats,
     frontierCorridor,
-    similarityScan: similarityScan.map((item) => ({ z: item.node.z, symbol: item.node.raw[1], name: item.node.raw[2], score: Number(item.score.toFixed(4)), comparedFields: item.comparedFields, sameFamily: item.sameFamily, sameRoot: item.sameRoot })),
+    similarityScan: asArray(similarityScan).map((item) => ({ z: item.node.z, symbol: item.node.raw[1], name: item.node.raw[2], score: Number(item.score.toFixed(4)), comparedFields: item.comparedFields, sameFamily: item.sameFamily, sameRoot: item.sameRoot })),
     comparison: comparison ? {
       selectedZ: comparison.selected.z,
       compareZ: comparison.compare.z,
@@ -1178,16 +1182,32 @@ export default function ElementSpiralAtlas() {
   }), [viewMode, overlay, harmonicFilter, show369, showFuture, selectedZ, compareZ, z, symbol, name, family, period, group, block, selectedProps, selectedNode, completenessReport, visibleNodes, patternScan, activePropertyStats, frontierCorridor, similarityScan, comparison, harmonicSummary, isotopeN, isotopeCandidate, isotopeRunway, resonanceMode, showResonance, resonanceGraph, insightEngine, atlasReceipt, researchPrompts, researchNotebook, currentSnapshot, snapshotDelta, labExperiment, xProperty, yProperty, correlationStudy, experimentPlan, labLog, labReportMarkdown]);
 
   const sourceEntries = Object.entries(PROPERTY_SOURCES || {});
+  const safePatternScan = asArray(patternScan);
+  const safeResearchPrompts = asArray(researchPrompts);
+  const safeResearchNotebook = asArray(researchNotebook);
+  const safeCompletenessReport = asArray(completenessReport);
+  const safeHarmonicSummary = asArray(harmonicSummary);
+  const safeSimilarityScan = asArray(similarityScan);
+  const safeFrontierCorridor = asArray(frontierCorridor);
+  const safeIsotopeRunway = asArray(isotopeRunway);
+  const safeSourceEntries = asArray(sourceEntries);
+  const safeExperimentSteps = asArray(experimentPlan?.steps);
+  const safeCorrelationPairs = asArray(correlationStudy?.pairs);
+  const safeResonanceEdges = asArray(resonanceGraph?.edges);
+  const safeResonanceSummary = asArray(resonanceGraph?.summary);
+  const safeComparisonProperties = asArray(comparison?.properties);
+  const safeInsightTags = asArray(insightEngine?.selectedTags);
+  const safeLabLog = asArray(labLog);
 
   return (
     <div style={{ minHeight: "100vh", background: "#f8f1df", color: "#0f172a", padding: 16, fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.6.1</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.6.2</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.6.1 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.6.2 research lab, correlation engine, and protocol compiler</p>
         </header>
 
         <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
@@ -1311,7 +1331,7 @@ export default function ElementSpiralAtlas() {
                 </g>
               )}
 
-              {showResonance && resonanceGraph.edges.map((edge, index) => {
+              {showResonance && safeResonanceEdges.map((edge, index) => {
                 const opacity = Math.max(0.18, 0.68 - index * 0.035);
                 const width = Math.max(1.2, 4.4 - index * 0.18);
                 const color = edge.sameRoot ? "#a16207" : edge.sameFamily ? "#7c3aed" : edge.sameBand ? "#2563eb" : "#64748b";
@@ -1387,14 +1407,14 @@ export default function ElementSpiralAtlas() {
               <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                 <div><b>Mode:</b> {RESONANCE_MODES[resonanceMode] || resonanceMode}</div>
                 <div><b>Edges:</b> {resonanceGraph.edges.length}</div>
-                {resonanceGraph.summary.length ? resonanceGraph.summary.slice(0, 6).map((item) => (
+                {safeResonanceSummary.length ? safeResonanceSummary.slice(0, 6).map((item) => (
                   <button key={`res-panel-${item.z}`} style={{ ...buttonStyle(false), textAlign: "left", borderRadius: 12 }} onClick={() => setSelectedZ(item.z)}>
                     {item.symbol}{item.z} — {item.reason} · score {item.score}
                   </button>
                 )) : <div style={{ color: "#64748b" }}>No graph links for this mode.</div>}
-                {resonanceGraph.summary.length > 6 && (
+                {safeResonanceSummary.length > 6 && (
                   <div style={{ fontSize: 11, color: "#64748b" }}>
-                    +{resonanceGraph.summary.length - 6} more links in export payload
+                    +{safeResonanceSummary.length - 6} more links in export payload
                   </div>
                 )}
               </div>
@@ -1431,7 +1451,7 @@ export default function ElementSpiralAtlas() {
                   </div>
                 )}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {insightEngine.selectedTags.map((tag) => (
+                  {safeInsightTags.map((tag) => (
                     <span key={tag} style={{ border: "1px solid #e2e8f0", background: "#ffffff", borderRadius: 999, padding: "5px 8px" }}>{tag}</span>
                   ))}
                 </div>
@@ -1440,7 +1460,7 @@ export default function ElementSpiralAtlas() {
             </details>
 
             <details open style={detailsPanelStyle()}>
-              <summary style={summaryStyle}>v2.6.1 Research Lab</summary>
+              <summary style={summaryStyle}>v2.6.2 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1449,7 +1469,7 @@ export default function ElementSpiralAtlas() {
                   <span style={{ color: "#92400e" }}>{experimentPlan.resultHint}</span>
                 </div>
                 <div style={{ display: "grid", gap: 5 }}>
-                  {(experimentPlan.steps || []).map((step, index) => (
+                  {safeExperimentSteps.map((step, index) => (
                     <div key={`${experimentPlan.receiptId}-${index}`} style={{ display: "grid", gridTemplateColumns: "22px 1fr", gap: 6 }}>
                       <b>{index + 1}</b><span>{step}</span>
                     </div>
@@ -1460,14 +1480,14 @@ export default function ElementSpiralAtlas() {
                   <span>{correlationStudy.xLabel || correlationStudy.xProperty} × {correlationStudy.yLabel || correlationStudy.yProperty}</span><br />
                   <span>n={correlationStudy.count}; r={correlationStudy.correlation === null ? "—" : correlationStudy.correlation.toFixed(3)} · {correlationStudy.interpretation}</span>
                   <div style={{ marginTop: 8, height: 96, border: "1px solid #e2e8f0", borderRadius: 10, background: "#f8fafc", position: "relative", overflow: "hidden" }}>
-                    {correlationStudy.pairs.map((pair) => {
+                    {safeCorrelationPairs.length ? safeCorrelationPairs.map((pair) => {
                       const xMeta = PROPERTY_META[xProperty];
                       const yMeta = PROPERTY_META[yProperty];
                       const xPct = xMeta ? Math.max(4, Math.min(96, ((pair.x - xMeta.min) / Math.max(1, xMeta.max - xMeta.min)) * 92 + 4)) : 50;
                       const yPct = yMeta ? Math.max(4, Math.min(96, 100 - (((pair.y - yMeta.min) / Math.max(1, yMeta.max - yMeta.min)) * 92 + 4))) : 50;
                       const color = pair.root === 3 ? "#7c3aed" : pair.root === 6 ? "#2563eb" : pair.root === 9 ? "#a16207" : "#64748b";
                       return <span key={`${pair.z}-${xProperty}-${yProperty}`} title={`${pair.symbol}${pair.z}`} style={{ position: "absolute", left: `${xPct}%`, top: `${yPct}%`, width: 7, height: 7, borderRadius: 999, background: color, transform: "translate(-50%, -50%)" }} />;
-                    })}
+                    }) : <span style={{ position: "absolute", left: 8, top: 8, fontSize: 11, color: "#64748b" }}>Insufficient correlation data points.</span>}
                   </div>
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -1475,10 +1495,10 @@ export default function ElementSpiralAtlas() {
                   <button style={buttonStyle(false)} onClick={() => copyToClipboard(labReportMarkdown)}>Copy lab report MD</button>
                   <button style={buttonStyle(false)} onClick={() => exportJson({ experimentPlan, correlationStudy, labReportMarkdown, labLog }, "phi369-element-spiral-atlas-v2-lab.json")}>Export lab JSON</button>
                 </div>
-                {labLog.length > 0 && (
+                {safeLabLog.length > 0 && (
                   <div style={{ display: "grid", gap: 6 }}>
-                    <b>Lab run log ({labLog.length})</b>
-                    {labLog.slice(0, 4).map((item) => (
+                    <b>Lab run log ({safeLabLog.length})</b>
+                    {safeLabLog.slice(0, 4).map((item) => (
                       <button key={item.id} style={{ ...buttonStyle(false), borderRadius: 12, textAlign: "left" }} onClick={() => copyToClipboard(item)}>
                         {item.experimentPlan?.label || "Lab run"}<br />
                         <span style={{ fontSize: 11, opacity: 0.75 }}>{item.id}</span>
@@ -1512,17 +1532,17 @@ export default function ElementSpiralAtlas() {
               )}
               <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
                 <b style={{ fontSize: 12 }}>Hypothesis prompts</b>
-                {researchPrompts.map((item) => (
+                {safeResearchPrompts.length ? safeResearchPrompts.map((item) => (
                   <button key={`${item.type}-${item.title}`} style={{ ...buttonStyle(false), borderRadius: 14, padding: 10, textAlign: "left" }} onClick={() => setResearchNote(item.prompt)}>
                     <b>{item.title}</b><br />
                     <span style={{ fontSize: 11, opacity: 0.78 }}>{item.prompt.slice(0, 120)}{item.prompt.length > 120 ? "…" : ""}</span>
                   </button>
-                ))}
+                )) : <p style={{ margin: 0, fontSize: 12, color: "#64748b" }}>No prompts available yet.</p>}
               </div>
-              {researchNotebook.length > 0 && (
+              {safeResearchNotebook.length > 0 && (
                 <div style={{ marginTop: 12, display: "grid", gap: 7 }}>
-                  <b style={{ fontSize: 12 }}>Saved snapshots ({researchNotebook.length})</b>
-                  {researchNotebook.slice(0, 5).map((item) => (
+                  <b style={{ fontSize: 12 }}>Saved snapshots ({safeResearchNotebook.length})</b>
+                  {safeResearchNotebook.slice(0, 5).map((item) => (
                     <button key={item.id} style={{ ...buttonStyle(false), borderRadius: 12, padding: 9, textAlign: "left" }} onClick={() => item.payload?.selectedZ && setSelectedZ(item.payload.selectedZ)}>
                       <b>{item.payload.symbol}{item.payload.selectedZ}</b> · {item.payload.overlay} · {item.payload.viewMode}<br />
                       <span style={{ fontSize: 11, opacity: 0.75 }}>{item.id}</span>
@@ -1546,7 +1566,7 @@ export default function ElementSpiralAtlas() {
                   <div>Atomic distance: {comparison.phi369.atomicDistance > 0 ? "+" : ""}{comparison.phi369.atomicDistance}</div>
                   <div>PHI369: {comparison.phi369.sameRoot ? "same root" : `root Δ ${comparison.phi369.digitalRootDelta}`}; {comparison.phi369.sameSector ? "same sector" : "different sector"}; {comparison.phi369.sameBand ? "same band" : "different band"}</div>
                   <div style={{ display: "grid", gap: 5 }}>
-                    {comparison.properties.map((item) => (
+                    {safeComparisonProperties.map((item) => (
                       <div key={item.property} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8, background: "#f8fafc", borderRadius: 9, padding: 7 }}>
                         <span>{item.label}</span>
                         <span>{item.delta === null ? "—" : `${item.delta > 0 ? "+" : ""}${item.delta.toFixed(3)} ${item.unit}`}</span>
@@ -1574,7 +1594,7 @@ export default function ElementSpiralAtlas() {
             <details open style={detailsPanelStyle()}>
               <summary style={summaryStyle}>Data completeness</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v1.1 tracks scientific-property coverage and separates seeded values from unknown/null fields.</p>
-              <CompletenessPanel report={completenessReport} />
+              <CompletenessPanel report={safeCompletenessReport} />
             </details>
 
             <details style={detailsPanelStyle()}><summary style={summaryStyle}>Legend</summary><Legend overlay={overlay} /></details>
@@ -1584,7 +1604,7 @@ export default function ElementSpiralAtlas() {
               <p style={{ margin: 0, fontSize: 14, lineHeight: 1.52, color: "#475569" }}>Ghost nodes 119 and 120 are future/unconfirmed placeholders. The corridor score below is geometry-only and is not an experimental discovery claim.</p>
               <div style={{ marginTop: 12, display: "flex", gap: 8 }}><button style={buttonStyle(selectedZ === 119)} onClick={() => setSelectedZ(119)}>E119</button><button style={buttonStyle(selectedZ === 120)} onClick={() => setSelectedZ(120)}>E120</button></div>
               <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
-                {frontierCorridor.map((item) => (
+                {safeFrontierCorridor.map((item) => (
                   <button key={item.z} style={{ ...buttonStyle(selectedZ === item.z), textAlign: "left", borderRadius: 14, padding: 10 }} onClick={() => setSelectedZ(item.z)}>
                     <b>{item.z} {item.symbol}</b> · score {item.frontierScore}/6<br />
                     <span style={{ fontSize: 11, opacity: 0.8 }}>{item.label}; dr {item.digitalRoot}, sector {item.sector}, band {item.band}</span>
@@ -1610,7 +1630,7 @@ export default function ElementSpiralAtlas() {
               )}
               <div style={{ marginTop: 12, display: "grid", gap: 6 }}>
                 <b style={{ fontSize: 12 }}>Superheavy runway at N={isotopeN}</b>
-                {isotopeRunway.slice(0, 5).map((item) => (
+                {safeIsotopeRunway.slice(0, 5).map((item) => (
                   <button key={item.z} style={{ ...buttonStyle(selectedZ === item.z), borderRadius: 14, padding: 9, textAlign: "left" }} onClick={() => setSelectedZ(item.z)}>
                     <b>{item.symbol}-{item.a}</b> · score {item.score}/10<br />
                     <span style={{ fontSize: 11, opacity: 0.8 }}>Z={item.z}, N/Z {item.nToZ}, {item.parity}</span>
@@ -1623,7 +1643,7 @@ export default function ElementSpiralAtlas() {
               <summary style={summaryStyle}>Harmonic families</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Root-family counts for known elements. Use the Harmonic Lens control to isolate a family on the atlas.</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
-                {harmonicSummary.map((item) => (
+                {safeHarmonicSummary.map((item) => (
                   <button key={item.root} style={{ ...buttonStyle(harmonicFilter !== "all" && Number(harmonicFilter) === item.root), borderRadius: 12, padding: 8, textAlign: "left", opacity: item.active ? 1 : 0.58 }} onClick={() => setHarmonicFilter(String(item.root))}>
                     <b>Root {item.root}</b><br />{item.count} elements<br />{item.stableCount} stable seeds
                   </button>
@@ -1636,7 +1656,7 @@ export default function ElementSpiralAtlas() {
               <summary style={summaryStyle}>Nearest seeded matches</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Similarity uses available seeded numeric properties, with tiny bonuses for matching family or digital root.</p>
               <div style={{ display: "grid", gap: 8 }}>
-                {similarityScan.map((item) => (
+                {safeSimilarityScan.map((item) => (
                   <button key={item.node.z} style={{ ...buttonStyle(false), borderRadius: 14, padding: 10, textAlign: "left" }} onClick={() => setSelectedZ(item.node.z)}>
                     <b>{item.node.raw[1]}{item.node.z}</b> · score {item.score.toFixed(3)}<br />
                     <span style={{ fontSize: 11, opacity: 0.8 }}>{item.comparedFields} fields; {item.sameFamily ? "same family" : "different family"}; {item.sameRoot ? "same root" : "different root"}</span>
@@ -1649,15 +1669,15 @@ export default function ElementSpiralAtlas() {
               <summary style={summaryStyle}>Pattern scanner</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compares seeded scientific values across the 3-line, 6-line, and 9-line digital-root families.</p>
               <div style={{ display: "grid", gap: 10 }}>
-                {patternScan.map((scan) => (
+                {safePatternScan.length ? safePatternScan.map((scan) => (
                   <div key={scan.property} style={{ border: "1px solid #e2e8f0", borderRadius: 12, padding: 10, background: "#ffffff" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "baseline" }}><b style={{ fontSize: 12 }}>{scan.label}</b><span style={{ fontSize: 11, color: "#92400e" }}>{scan.strength}</span></div>
                     <div style={{ marginTop: 7, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
-                      {scan.lineAverages.map((item) => <div key={`${scan.property}-${item.line}`} style={{ background: item.line === 3 ? "#ede9fe" : item.line === 6 ? "#dbeafe" : "#fef3c7", borderRadius: 9, padding: 6 }}><b>{item.line}-line</b><br />{item.average === null ? "—" : `${item.average.toFixed(2)} ${scan.unit}`}</div>)}
+                      {asArray(scan.lineAverages).map((item) => <div key={`${scan.property}-${item.line}`} style={{ background: item.line === 3 ? "#ede9fe" : item.line === 6 ? "#dbeafe" : "#fef3c7", borderRadius: 9, padding: 6 }}><b>{item.line}-line</b><br />{item.average === null ? "—" : `${item.average.toFixed(2)} ${scan.unit}`}</div>)}
                     </div>
-                  <div style={{ fontSize: 11, color: "#64748b" }}>Sources: {scan.sources.map((sourceId) => PROPERTY_SOURCES?.[sourceId]?.name || sourceId).join(", ") || "—"}</div>
+                  <div style={{ fontSize: 11, color: "#64748b" }}>Sources: {asArray(scan.sources).map((sourceId) => PROPERTY_SOURCES?.[sourceId]?.name || sourceId).join(", ") || "—"}</div>
                   </div>
-                ))}
+                )) : <p style={{ margin: 0, fontSize: 12, color: "#64748b" }}>No pattern scan data available.</p>}
               </div>
             </details>
 
@@ -1677,8 +1697,8 @@ export default function ElementSpiralAtlas() {
             <details style={detailsPanelStyle()}>
               <summary style={summaryStyle}>Data Sources</summary>
               <div style={{ marginTop: 8, display: "grid", gap: 7, fontSize: 12 }}>
-                {sourceEntries.length ? (
-                  sourceEntries.map(([sourceId, sourceRecord]) => {
+                {safeSourceEntries.length ? (
+                  safeSourceEntries.map(([sourceId, sourceRecord]) => {
                     const href = typeof sourceRecord?.url === "string" ? sourceRecord.url : "";
                     return (
                       <div key={sourceId} style={{ border: "1px solid #e2e8f0", borderRadius: 12, padding: 10, background: "#ffffff" }}>
@@ -1720,7 +1740,7 @@ export default function ElementSpiralAtlas() {
         </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.6.1 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.6.2 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>
