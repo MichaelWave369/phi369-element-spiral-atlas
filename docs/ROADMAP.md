@@ -74,3 +74,11 @@
 - Add source notes and retrieval dates per batch
 - Add fixture tests for expanded coverage
 - Keep null-safe incomplete fields
+
+
+## v2.6.3 Runtime Safety
+- Improve error-boundary fallback copy
+- Add reload and copy-error controls
+- Document runtime safety model
+- Preserve source maps for debugging
+- Confirm array-safe rendering posture
