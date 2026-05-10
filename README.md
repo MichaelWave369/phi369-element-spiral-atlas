@@ -2,6 +2,17 @@
 
 A golden-angle / Fibonacci periodic-table visualization and research-lab interface for exploring chemical families, modular 369 groupings, isotope previews, superheavy frontier nodes, and scientific-property overlays.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Deploy Pages](https://github.com/MichaelWave369/phi369-element-spiral-atlas/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/MichaelWave369/phi369-element-spiral-atlas/actions/workflows/deploy-pages.yml)
+
+## Live Demo
+
+https://michaelwave369.github.io/phi369-element-spiral-atlas/
+
+## Screenshot
+
+> Screenshot coming soon.
+
 ## What this is
 
 PHI369 Element Spiral Atlas is an experimental visual research interface that remaps the periodic table into alternate coordinate systems:
@@ -49,15 +60,35 @@ npm install
 npm run dev
 ```
 
-## Live demo
+## Live demo deployment
 
-Once GitHub Pages is enabled, the public demo will be available at:
+GitHub Pages is configured to deploy from GitHub Actions using the repository workflow.
 
-https://michaelwave369.github.io/phi369-element-spiral-atlas/
 
-To enable it:
+## Data status
 
-1. Open repository Settings
-2. Go to Pages
-3. Under Build and deployment, set Source to GitHub Actions
-4. Push to main or run the Deploy Pages workflow manually
+The current public alpha uses a seeded scientific-property dataset for interface development. Missing values are shown as unknown/null. See docs/DATA_PROVENANCE.md for data boundaries and future data-curation plans.
+
+v2.2 expands the property schema for future curated data sources. The app remains null-safe: missing fields render as unknown rather than being guessed.
+
+See docs/DATA_SOURCES.md.
+
+
+v2.3 adds a source registry and curation-status registry. It begins a limited curated seed layer for phase-at-STP and occurrence while preserving null-safe behavior for incomplete fields.
+
+See docs/CURATION_NOTES.md and docs/DATA_SOURCES.md.
+
+## Validation
+
+The project includes lightweight Node-based validation tests for:
+- element identity data
+- ghost-node boundaries
+- property schema keys
+- source references
+- atlas math helpers
+
+Run:
+
+```bash
+npm test
+```
