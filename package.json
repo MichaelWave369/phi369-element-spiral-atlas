@@ -8,7 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "npm run build"
+    "check": "npm run test && npm run build",
+    "test": "node --test",
+    "validate:data": "node --test test/dataValidation.test.js",
+    "validate:math": "node --test test/atlasMath.test.js"
   },
   "dependencies": {
     "react": "latest",
