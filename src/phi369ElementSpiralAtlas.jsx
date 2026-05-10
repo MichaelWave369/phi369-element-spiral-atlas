@@ -1177,6 +1177,8 @@ export default function ElementSpiralAtlas() {
     })),
   }), [viewMode, overlay, harmonicFilter, show369, showFuture, selectedZ, compareZ, z, symbol, name, family, period, group, block, selectedProps, selectedNode, completenessReport, visibleNodes, patternScan, activePropertyStats, frontierCorridor, similarityScan, comparison, harmonicSummary, isotopeN, isotopeCandidate, isotopeRunway, resonanceMode, showResonance, resonanceGraph, insightEngine, atlasReceipt, researchPrompts, researchNotebook, currentSnapshot, snapshotDelta, labExperiment, xProperty, yProperty, correlationStudy, experimentPlan, labLog, labReportMarkdown]);
 
+  const sourceEntries = Object.entries(PROPERTY_SOURCES || {});
+
   return (
     <div style={{ minHeight: "100vh", background: "#f8f1df", color: "#0f172a", padding: 16, fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
@@ -1653,7 +1655,7 @@ export default function ElementSpiralAtlas() {
                     <div style={{ marginTop: 7, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
                       {scan.lineAverages.map((item) => <div key={`${scan.property}-${item.line}`} style={{ background: item.line === 3 ? "#ede9fe" : item.line === 6 ? "#dbeafe" : "#fef3c7", borderRadius: 9, padding: 6 }}><b>{item.line}-line</b><br />{item.average === null ? "—" : `${item.average.toFixed(2)} ${scan.unit}`}</div>)}
                     </div>
-                  <div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
+                  <div style={{ fontSize: 11, color: "#64748b" }}>Sources: {scan.sources.map((sourceId) => PROPERTY_SOURCES?.[sourceId]?.name || sourceId).join(", ") || "—"}</div>
                   </div>
                 ))}
               </div>
@@ -1665,8 +1667,8 @@ export default function ElementSpiralAtlas() {
                 <div><b>Schema:</b> {DATA_CURATION_STATUS?.schemaVersion || "unknown"}</div>
                 <div><b>Status:</b> {DATA_CURATION_STATUS?.status || "unknown"}</div>
                 <div style={{ color: "#64748b" }}>{DATA_CURATION_STATUS?.claim || "This atlas keeps claim boundaries and does not replace authoritative references."}</div>
-                {Object.entries(DATA_CURATION_STATUS.fields).slice(0, 8).map(([field, meta]) => (
-                  <div key={field}><b>{field}</b> — {meta.status}<div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
+                {Object.entries(DATA_CURATION_STATUS?.fields || {}).slice(0, 8).map(([field, meta]) => (
+                  <div key={field}><b>{field}</b> — {meta?.status || "unknown"}<div style={{ fontSize: 11, color: "#64748b" }}>{meta?.notes || "No notes yet."}</div>
                   </div>
                 ))}
               </div>
@@ -1675,14 +1677,42 @@ export default function ElementSpiralAtlas() {
             <details style={detailsPanelStyle()}>
               <summary style={summaryStyle}>Data Sources</summary>
               <div style={{ marginTop: 8, display: "grid", gap: 7, fontSize: 12 }}>
-                {Object.entries(PROPERTY_SOURCES || {}).length ? Object.entries(PROPERTY_SOURCES || {}).map(([id, source]) => (
-                  <div key={id}>
-                    {typeof source?.url === "string" ? <a href={source.url} target="_blank" rel="noreferrer"><b>{source?.name || id}</b></a> : <b>{source?.name || id}</b>}<br />
-                    <span style={{ color: "#64748b" }}>{id} · {source?.type || "reference"} · {source?.retrievalDate || "—"}</span>
-                    <div style={{ fontSize: 11, color: "#64748b" }}>{source?.licenseNote || "—"}</div>
-                    {source?.notes ? <div style={{ fontSize: 11, color: "#64748b" }}>{source.notes}</div> : null}
-                  </div>
-                )) : <div style={{ color: "#64748b" }}>No source registry entries available.</div>}
+                {sourceEntries.length ? (
+                  sourceEntries.map(([sourceId, sourceRecord]) => {
+                    const href = typeof sourceRecord?.url === "string" ? sourceRecord.url : "";
+                    return (
+                      <div key={sourceId} style={{ border: "1px solid #e2e8f0", borderRadius: 12, padding: 10, background: "#ffffff" }}>
+                        <div style={{ fontWeight: 800 }}>
+                          {href ? (
+                            <a href={href} target="_blank" rel="noreferrer" style={{ color: "#0f172a" }}>
+                              {sourceRecord?.name || sourceId}
+                            </a>
+                          ) : (
+                            sourceRecord?.name || sourceId
+                          )}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#64748b", marginTop: 4 }}>
+                          ID: {sourceId}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#64748b", marginTop: 4 }}>
+                          Retrieved: {sourceRecord?.retrievalDate || "—"}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#64748b", marginTop: 4 }}>
+                          License note: {sourceRecord?.licenseNote || "—"}
+                        </div>
+                        {sourceRecord?.notes && (
+                          <div style={{ fontSize: 12, color: "#475569", marginTop: 6 }}>
+                            {sourceRecord.notes}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p style={{ margin: 0, fontSize: 13, color: "#64748b" }}>
+                    No source registry entries available.
+                  </p>
+                )}
                 <div style={{ color: "#64748b" }}>Sources identify intended references for curation; current public-alpha data remains incomplete.</div>
               </div>
             </details>
