@@ -1,0 +1,38 @@
+export const PROPERTY_SOURCES = {
+  iupac: {
+    id: "iupac",
+    name: "IUPAC Periodic Table of the Elements",
+    url: "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    type: "reference",
+    retrievalDate: "2026-05-10",
+    licenseNote: "Public reference; verify terms before redistributing bulk copied data.",
+    notes: "Primary public reference for element identity, names, symbols, and standard atomic weights.",
+  },
+  rsc: {
+    id: "rsc",
+    name: "Royal Society of Chemistry Periodic Table",
+    url: "https://www.rsc.org/periodic-table",
+    type: "reference",
+    retrievalDate: "2026-05-10",
+    licenseNote: "Public reference; verify terms before redistributing bulk copied data.",
+    notes: "Public reference for element properties and educational descriptions.",
+  },
+  nist: {
+    id: "nist",
+    name: "NIST Chemistry WebBook",
+    url: "https://webbook.nist.gov/chemistry/",
+    type: "reference",
+    retrievalDate: "2026-05-10",
+    licenseNote: "Public reference; verify terms before redistributing bulk copied data.",
+    notes: "Reference source for chemistry and physical-property data where available.",
+  },
+  pubchem: {
+    id: "pubchem",
+    name: "PubChem Element Data",
+    url: "https://pubchem.ncbi.nlm.nih.gov/periodic-table/",
+    type: "reference",
+    retrievalDate: "2026-05-10",
+    licenseNote: "Public reference; verify terms before redistributing bulk copied data.",
+    notes: "Public element property reference.",
+  },
+};
