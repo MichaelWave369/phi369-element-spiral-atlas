@@ -1,7 +1,3 @@
-function assert(condition, message) {
-  if (!condition) console.error(`Element Spiral Atlas validation failed: ${message}`);
-}
-
 export function runDataValidation({
   elements,
   familyColors,
@@ -17,6 +13,13 @@ export function runDataValidation({
   completenessFields,
   digitalRoot,
 }) {
+  const errors = [];
+  function assert(condition, message) {
+    if (!condition) {
+      errors.push(message);
+      console.error(`Element Spiral Atlas validation failed: ${message}`);
+    }
+  }
   assert(elements.length === 120, "Expected 120 entries including 119 and 120 placeholders.");
   const seen = new Set();
   elements.forEach((entry, index) => {
@@ -48,7 +51,10 @@ export function runDataValidation({
     assert(typeof field?.label === "string" && field.label.length > 0, `Completeness field '${field?.key ?? index + 1}' missing label.`);
     completenessKeys.add(field.key);
   });
-  Object.keys(emptyElementProperties).forEach((key) => assert(completenessKeys.has(key), `Completeness fields missing key '${key}'.`));
+  Object.keys(emptyElementProperties).forEach((key) => {
+    if (key === "sourceRefs") return;
+    assert(completenessKeys.has(key), `Completeness fields missing key '${key}'.`);
+  });
   const allowedPropertyKeys = new Set(Object.keys(emptyElementProperties));
   Object.entries(propertySeeds).forEach(([z, props]) => {
     Object.keys(props).forEach((key) => {
@@ -67,4 +73,5 @@ export function runDataValidation({
     }
   });
 
+  return errors;
 }

@@ -1,0 +1,21 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { FAMILY_COLORS, BLOCK_COLORS, PROPERTY_PRESETS, VIEW_PRESETS, HARMONIC_FILTERS, RESONANCE_MODES, COMPLETENESS_FIELDS } from "../src/data/atlasConstants.js";
+import { ELEMENTS } from "../src/data/elementsBase.js";
+import { PROPERTY_SEEDS, EMPTY_ELEMENT_PROPERTIES } from "../src/data/propertySeeds.js";
+import { PROPERTY_META } from "../src/data/propertyMeta.js";
+import { PROPERTY_SOURCES } from "../src/data/propertySources.js";
+import { DATA_CURATION_STATUS } from "../src/data/dataCurationStatus.js";
+import { digitalRoot } from "../src/lib/atlasMath.js";
+import { runDataValidation } from "../src/data/dataValidation.js";
+
+test("element base list has 120 entries including ghost nodes",()=>{ assert.equal(ELEMENTS.length,120); assert.equal(ELEMENTS[0][0],1); assert.equal(ELEMENTS[117][0],118); assert.equal(ELEMENTS[118][0],119); assert.equal(ELEMENTS[119][0],120); });
+test("atomic numbers are sequential and unique",()=>{ const set=new Set(); ELEMENTS.forEach((e,i)=>{ assert.equal(e[0],i+1); set.add(e[0]);}); assert.equal(set.size,ELEMENTS.length); });
+test("all element families and blocks are known",()=>{ ELEMENTS.forEach((e)=>{ assert.ok(FAMILY_COLORS[e[3]]); assert.ok(BLOCK_COLORS[e[6]]);});});
+test("future placeholders remain ghost nodes",()=>{ assert.equal(ELEMENTS[118][3],"future"); assert.equal(ELEMENTS[119][3],"future"); assert.match(ELEMENTS[118][2],/119/); assert.match(ELEMENTS[119][2],/120/);});
+test("property metadata overlays are registered",()=>{ Object.keys(PROPERTY_META).forEach((k)=>assert.ok(PROPERTY_PRESETS[k]));});
+test("property seed keys are in EMPTY_ELEMENT_PROPERTIES",()=>{ Object.values(PROPERTY_SEEDS).forEach((seed)=>Object.keys(seed).forEach((k)=>assert.ok(Object.hasOwn(EMPTY_ELEMENT_PROPERTIES,k))));});
+test("sourceRefs reference known property sources",()=>{ Object.values(PROPERTY_SEEDS).forEach((props)=>{ if(props.sourceRefs){ Object.values(props.sourceRefs).forEach((ids)=>{ assert.ok(Array.isArray(ids)); ids.forEach((id)=>assert.ok(PROPERTY_SOURCES[id]));});}});});
+test("curation status field keys are known",()=>{ Object.keys(DATA_CURATION_STATUS.fields).forEach((k)=>assert.ok(Object.hasOwn(EMPTY_ELEMENT_PROPERTIES,k)));});
+test("completeness field keys are known and labeled",()=>{ COMPLETENESS_FIELDS.forEach((f)=>{ assert.ok(f.key); assert.ok(f.label); assert.ok(Object.hasOwn(EMPTY_ELEMENT_PROPERTIES,f.key));});});
+test("runtime data validation passes for current dataset",()=>{ const errors = runDataValidation({ elements:ELEMENTS, familyColors:FAMILY_COLORS, blockColors:BLOCK_COLORS, propertyPresets:PROPERTY_PRESETS, viewPresets:VIEW_PRESETS, harmonicFilters:HARMONIC_FILTERS, resonanceModes:RESONANCE_MODES, propertyMeta:PROPERTY_META, propertySeeds:PROPERTY_SEEDS, emptyElementProperties:EMPTY_ELEMENT_PROPERTIES, completenessFields:COMPLETENESS_FIELDS, propertySources:PROPERTY_SOURCES, digitalRoot }); assert.deepEqual(errors,[]);});

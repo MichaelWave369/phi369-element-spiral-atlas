@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   PHI,
-  GOLDEN_ANGLE,
-  DEG,
   FAMILY_COLORS,
   FAMILY_LABELS,
   BLOCK_COLORS,
@@ -22,6 +20,7 @@ import { EMPTY_ELEMENT_PROPERTIES, PROPERTY_SEEDS } from "./data/propertySeeds.j
 import { PROPERTY_META } from "./data/propertyMeta.js";
 import { PROPERTY_SOURCES } from "./data/propertySources.js";
 import { DATA_CURATION_STATUS } from "./data/dataCurationStatus.js";
+import { DEG, GOLDEN_ANGLE, bandFromZ, digitalRoot, heatColor, nearestMagic, parityLabel, sectorFromAngle } from "./lib/atlasMath.js";
 import { runDataValidation } from "./data/dataValidation.js";
 
 function cardStyle(extra = {}) {
@@ -62,26 +61,8 @@ const summaryStyle = {
   listStyle: "none",
 };
 
-function digitalRoot(n) {
-  if (!Number.isFinite(n) || n <= 0) return 0;
-  return ((Math.trunc(n) - 1) % 9) + 1;
-}
 
-function sectorFromAngle(theta) {
-  const a = ((theta % 360) + 360) % 360;
-  if (a >= 90 && a < 210) return 1;
-  if (a >= 210 && a < 330) return 2;
-  return 3;
-}
 
-function bandFromZ(z) {
-  if (z <= 2) return 1;
-  if (z <= 10) return 2;
-  if (z <= 18) return 3;
-  if (z <= 36) return 4;
-  if (z <= 54) return 5;
-  return 6;
-}
 
 function getProps(z) {
   const props = PROPERTY_SEEDS[z] || {};
@@ -93,14 +74,6 @@ function getProps(z) {
   };
 }
 
-function heatColor(value, min, max) {
-  if (value === null || value === undefined || Number.isNaN(value) || !Number.isFinite(value)) return "#e5e7eb";
-  const safeMin = Number.isFinite(min) ? min : 0;
-  const safeMax = Number.isFinite(max) && max !== safeMin ? max : safeMin + 1;
-  const t = Math.max(0, Math.min(1, (value - safeMin) / (safeMax - safeMin)));
-  const hue = 220 - 180 * t;
-  return `hsl(${hue}, 78%, 76%)`;
-}
 
 function colorFor(element, overlay) {
   if (!Array.isArray(element)) return FAMILY_COLORS.unknown;
@@ -273,22 +246,6 @@ function buildFrontierCorridor(nodes) {
   });
 }
 
-
-function nearestMagic(value, magicNumbers) {
-  const nearest = magicNumbers.reduce((best, candidate) => {
-    const distance = Math.abs(candidate - value);
-    return distance < best.distance ? { value: candidate, distance } : best;
-  }, { value: magicNumbers[0], distance: Math.abs(magicNumbers[0] - value) });
-  return nearest;
-}
-
-function parityLabel(z, n) {
-  const zEven = z % 2 === 0;
-  const nEven = n % 2 === 0;
-  if (zEven && nEven) return "even-even";
-  if (!zEven && !nEven) return "odd-odd";
-  return zEven ? "even-odd" : "odd-even";
-}
 
 function scoreIsotopeCandidate(node, neutronNumber) {
   if (!node || !Number.isFinite(neutronNumber)) return null;
@@ -1225,10 +1182,10 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.3</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.4</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.3 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.4 research lab, correlation engine, and protocol compiler</p>
         </header>
 
         <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
@@ -1481,7 +1438,7 @@ export default function ElementSpiralAtlas() {
             </details>
 
             <details open style={detailsPanelStyle()}>
-              <summary style={summaryStyle}>v2.3 Research Lab</summary>
+              <summary style={summaryStyle}>v2.4 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1729,7 +1686,7 @@ export default function ElementSpiralAtlas() {
         </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.3 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.4 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>

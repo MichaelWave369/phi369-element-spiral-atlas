@@ -77,3 +77,18 @@ See docs/DATA_SOURCES.md.
 v2.3 adds a source registry and curation-status registry. It begins a limited curated seed layer for phase-at-STP and occurrence while preserving null-safe behavior for incomplete fields.
 
 See docs/CURATION_NOTES.md and docs/DATA_SOURCES.md.
+
+## Validation
+
+The project includes lightweight Node-based validation tests for:
+- element identity data
+- ghost-node boundaries
+- property schema keys
+- source references
+- atlas math helpers
+
+Run:
+
+```bash
+npm test
+```
