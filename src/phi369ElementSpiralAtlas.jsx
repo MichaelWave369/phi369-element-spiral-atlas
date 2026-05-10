@@ -1,191 +1,27 @@
-import React, { useMemo, useRef, useState } from "react";
-
-const PHI = (1 + Math.sqrt(5)) / 2;
-const GOLDEN_ANGLE = 360 * (1 - 1 / PHI);
-const DEG = Math.PI / 180;
-
-const FAMILY_COLORS = {
-  alkali: "#fda4af",
-  alkaline: "#fdba74",
-  transition: "#c4b5fd",
-  postTransition: "#d4d4d8",
-  metalloid: "#86efac",
-  nonmetal: "#bbf7d0",
-  halogen: "#fde68a",
-  noble: "#bfdbfe",
-  lanthanide: "#99f6e4",
-  actinide: "#93c5fd",
-  future: "#e5e7eb",
-  unknown: "#e5e7eb",
-};
-
-const FAMILY_LABELS = {
-  alkali: "Alkali metal",
-  alkaline: "Alkaline earth",
-  transition: "Transition metal",
-  postTransition: "Post-transition",
-  metalloid: "Metalloid",
-  nonmetal: "Reactive nonmetal",
-  halogen: "Halogen",
-  noble: "Noble gas",
-  lanthanide: "Lanthanide",
-  actinide: "Actinide",
-  future: "Future / unconfirmed",
-  unknown: "Unknown",
-};
-
-const BLOCK_COLORS = {
-  s: "#fed7aa",
-  p: "#bbf7d0",
-  d: "#c4b5fd",
-  f: "#bfdbfe",
-  unknown: "#e5e7eb",
-};
-
-const PROPERTY_SEEDS = {
-  1: { atomicMass: 1.008, electronegativity: 2.2, ionization: 13.598, density: 0.00008988, stable: true, discovered: 1766 },
-  2: { atomicMass: 4.0026, electronegativity: null, ionization: 24.587, density: 0.0001785, stable: true, discovered: 1895 },
-  3: { atomicMass: 6.94, electronegativity: 0.98, ionization: 5.392, density: 0.534, stable: true, discovered: 1817 },
-  4: { atomicMass: 9.0122, electronegativity: 1.57, ionization: 9.323, density: 1.85, stable: true, discovered: 1798 },
-  5: { atomicMass: 10.81, electronegativity: 2.04, ionization: 8.298, density: 2.34, stable: true, discovered: 1808 },
-  6: { atomicMass: 12.011, electronegativity: 2.55, ionization: 11.26, density: 2.267, stable: true, discovered: -3750 },
-  7: { atomicMass: 14.007, electronegativity: 3.04, ionization: 14.534, density: 0.001251, stable: true, discovered: 1772 },
-  8: { atomicMass: 15.999, electronegativity: 3.44, ionization: 13.618, density: 0.001429, stable: true, discovered: 1774 },
-  9: { atomicMass: 18.998, electronegativity: 3.98, ionization: 17.423, density: 0.001696, stable: true, discovered: 1886 },
-  10: { atomicMass: 20.18, electronegativity: null, ionization: 21.565, density: 0.0009002, stable: true, discovered: 1898 },
-  11: { atomicMass: 22.99, electronegativity: 0.93, ionization: 5.139, density: 0.97, stable: true, discovered: 1807 },
-  12: { atomicMass: 24.305, electronegativity: 1.31, ionization: 7.646, density: 1.738, stable: true, discovered: 1755 },
-  13: { atomicMass: 26.982, electronegativity: 1.61, ionization: 5.986, density: 2.7, stable: true, discovered: 1825 },
-  14: { atomicMass: 28.085, electronegativity: 1.9, ionization: 8.152, density: 2.3296, stable: true, discovered: 1824 },
-  15: { atomicMass: 30.974, electronegativity: 2.19, ionization: 10.487, density: 1.823, stable: true, discovered: 1669 },
-  16: { atomicMass: 32.06, electronegativity: 2.58, ionization: 10.36, density: 2.07, stable: true, discovered: -2000 },
-  17: { atomicMass: 35.45, electronegativity: 3.16, ionization: 12.968, density: 0.0032, stable: true, discovered: 1774 },
-  18: { atomicMass: 39.948, electronegativity: null, ionization: 15.76, density: 0.001784, stable: true, discovered: 1894 },
-  26: { atomicMass: 55.845, electronegativity: 1.83, ionization: 7.902, density: 7.874, stable: true, discovered: -5000 },
-  29: { atomicMass: 63.546, electronegativity: 1.9, ionization: 7.726, density: 8.96, stable: true, discovered: -9000 },
-  47: { atomicMass: 107.8682, electronegativity: 1.93, ionization: 7.576, density: 10.49, stable: true, discovered: -3000 },
-  79: { atomicMass: 196.96657, electronegativity: 2.54, ionization: 9.226, density: 19.32, stable: true, discovered: -6000 },
-  82: { atomicMass: 207.2, electronegativity: 2.33, ionization: 7.417, density: 11.34, stable: true, discovered: -7000 },
-  92: { atomicMass: 238.02891, electronegativity: 1.38, ionization: 6.194, density: 19.1, stable: false, discovered: 1789 },
-  94: { atomicMass: 244, electronegativity: 1.28, ionization: 6.026, density: 19.86, stable: false, discovered: 1940 },
-  118: { atomicMass: 294, electronegativity: null, ionization: null, density: null, stable: false, discovered: 2002 },
-};
-
-const PROPERTY_META = {
-  atomicMass: { label: "Atomic mass", unit: "u", min: 1, max: 294 },
-  electronegativity: { label: "Electronegativity", unit: "Pauling", min: 0.7, max: 4.0 },
-  ionization: { label: "1st ionization", unit: "eV", min: 3.5, max: 25 },
-  density: { label: "Density", unit: "g/cm³", min: 0, max: 22.6 },
-};
-
-const COMPLETENESS_FIELDS = [
-  { key: "atomicMass", label: "Atomic mass" },
-  { key: "electronegativity", label: "Electronegativity" },
-  { key: "ionization", label: "Ionization energy" },
-  { key: "density", label: "Density" },
-  { key: "stable", label: "Stability flag" },
-  { key: "discovered", label: "Discovery year" },
-];
-
-const PROPERTY_PRESETS = {
-  family: "Chemical family",
-  digitalRoot: "369 / digital root",
-  period: "Period",
-  block: "Electron block",
-  frontier: "Superheavy frontier",
-  stability: "Stable vs radioactive",
-  atomicMass: "Atomic mass heatmap",
-  electronegativity: "Electronegativity heatmap",
-  ionization: "1st ionization energy heatmap",
-  density: "Density heatmap",
-};
-
-const VIEW_PRESETS = {
-  seed: "Golden seed field",
-  ribbon: "Spiral ribbon",
-  table: "Standard table",
-};
-
-const HARMONIC_FILTERS = {
-  all: "All roots",
-  1: "Root 1",
-  2: "Root 2",
-  3: "Root 3",
-  4: "Root 4",
-  5: "Root 5",
-  6: "Root 6",
-  7: "Root 7",
-  8: "Root 8",
-  9: "Root 9",
-};
-
-const RESONANCE_MODES = {
-  harmonic: "Same digital root",
-  family: "Same chemical family",
-  period: "Same period",
-  band: "Same radial band",
-  isotope: "Nearest isotope runway",
-};
-
-const MAGIC_PROTONS = [2, 8, 20, 28, 50, 82, 114, 120, 126];
-const MAGIC_NEUTRONS = [2, 8, 20, 28, 50, 82, 126, 184];
-
-const ISOTOPE_PRESETS = {
-  stabilityIsland: { label: "Island target", neutronNumber: 184 },
-  selectedBalanced: { label: "Balanced N/Z", neutronNumber: null },
-};
-
-const LAB_EXPERIMENTS = {
-  harmonicAudit: "Harmonic property audit",
-  correlationStudy: "Property correlation study",
-  frontierRunway: "Superheavy runway review",
-  resonanceTrace: "Resonance graph trace",
-  claimDiscipline: "Claim discipline review",
-};
-
-const CORRELATION_PROPERTIES = ["atomicMass", "electronegativity", "ionization", "density"];
-
-const ELEMENTS = [
-  [1, "H", "Hydrogen", "nonmetal", 1, 1, "s"], [2, "He", "Helium", "noble", 1, 18, "s"],
-  [3, "Li", "Lithium", "alkali", 2, 1, "s"], [4, "Be", "Beryllium", "alkaline", 2, 2, "s"], [5, "B", "Boron", "metalloid", 2, 13, "p"], [6, "C", "Carbon", "nonmetal", 2, 14, "p"], [7, "N", "Nitrogen", "nonmetal", 2, 15, "p"], [8, "O", "Oxygen", "nonmetal", 2, 16, "p"], [9, "F", "Fluorine", "halogen", 2, 17, "p"], [10, "Ne", "Neon", "noble", 2, 18, "p"],
-  [11, "Na", "Sodium", "alkali", 3, 1, "s"], [12, "Mg", "Magnesium", "alkaline", 3, 2, "s"], [13, "Al", "Aluminium", "postTransition", 3, 13, "p"], [14, "Si", "Silicon", "metalloid", 3, 14, "p"], [15, "P", "Phosphorus", "nonmetal", 3, 15, "p"], [16, "S", "Sulfur", "nonmetal", 3, 16, "p"], [17, "Cl", "Chlorine", "halogen", 3, 17, "p"], [18, "Ar", "Argon", "noble", 3, 18, "p"],
-  [19, "K", "Potassium", "alkali", 4, 1, "s"], [20, "Ca", "Calcium", "alkaline", 4, 2, "s"], [21, "Sc", "Scandium", "transition", 4, 3, "d"], [22, "Ti", "Titanium", "transition", 4, 4, "d"], [23, "V", "Vanadium", "transition", 4, 5, "d"], [24, "Cr", "Chromium", "transition", 4, 6, "d"], [25, "Mn", "Manganese", "transition", 4, 7, "d"], [26, "Fe", "Iron", "transition", 4, 8, "d"], [27, "Co", "Cobalt", "transition", 4, 9, "d"], [28, "Ni", "Nickel", "transition", 4, 10, "d"], [29, "Cu", "Copper", "transition", 4, 11, "d"], [30, "Zn", "Zinc", "transition", 4, 12, "d"], [31, "Ga", "Gallium", "postTransition", 4, 13, "p"], [32, "Ge", "Germanium", "metalloid", 4, 14, "p"], [33, "As", "Arsenic", "metalloid", 4, 15, "p"], [34, "Se", "Selenium", "nonmetal", 4, 16, "p"], [35, "Br", "Bromine", "halogen", 4, 17, "p"], [36, "Kr", "Krypton", "noble", 4, 18, "p"],
-  [37, "Rb", "Rubidium", "alkali", 5, 1, "s"], [38, "Sr", "Strontium", "alkaline", 5, 2, "s"], [39, "Y", "Yttrium", "transition", 5, 3, "d"], [40, "Zr", "Zirconium", "transition", 5, 4, "d"], [41, "Nb", "Niobium", "transition", 5, 5, "d"], [42, "Mo", "Molybdenum", "transition", 5, 6, "d"], [43, "Tc", "Technetium", "transition", 5, 7, "d"], [44, "Ru", "Ruthenium", "transition", 5, 8, "d"], [45, "Rh", "Rhodium", "transition", 5, 9, "d"], [46, "Pd", "Palladium", "transition", 5, 10, "d"], [47, "Ag", "Silver", "transition", 5, 11, "d"], [48, "Cd", "Cadmium", "transition", 5, 12, "d"], [49, "In", "Indium", "postTransition", 5, 13, "p"], [50, "Sn", "Tin", "postTransition", 5, 14, "p"], [51, "Sb", "Antimony", "metalloid", 5, 15, "p"], [52, "Te", "Tellurium", "metalloid", 5, 16, "p"], [53, "I", "Iodine", "halogen", 5, 17, "p"], [54, "Xe", "Xenon", "noble", 5, 18, "p"],
-  [55, "Cs", "Cesium", "alkali", 6, 1, "s"], [56, "Ba", "Barium", "alkaline", 6, 2, "s"], [57, "La", "Lanthanum", "lanthanide", 6, 3, "f"], [58, "Ce", "Cerium", "lanthanide", 6, 3, "f"], [59, "Pr", "Praseodymium", "lanthanide", 6, 3, "f"], [60, "Nd", "Neodymium", "lanthanide", 6, 3, "f"], [61, "Pm", "Promethium", "lanthanide", 6, 3, "f"], [62, "Sm", "Samarium", "lanthanide", 6, 3, "f"], [63, "Eu", "Europium", "lanthanide", 6, 3, "f"], [64, "Gd", "Gadolinium", "lanthanide", 6, 3, "f"], [65, "Tb", "Terbium", "lanthanide", 6, 3, "f"], [66, "Dy", "Dysprosium", "lanthanide", 6, 3, "f"], [67, "Ho", "Holmium", "lanthanide", 6, 3, "f"], [68, "Er", "Erbium", "lanthanide", 6, 3, "f"], [69, "Tm", "Thulium", "lanthanide", 6, 3, "f"], [70, "Yb", "Ytterbium", "lanthanide", 6, 3, "f"], [71, "Lu", "Lutetium", "lanthanide", 6, 3, "f"],
-  [72, "Hf", "Hafnium", "transition", 6, 4, "d"], [73, "Ta", "Tantalum", "transition", 6, 5, "d"], [74, "W", "Tungsten", "transition", 6, 6, "d"], [75, "Re", "Rhenium", "transition", 6, 7, "d"], [76, "Os", "Osmium", "transition", 6, 8, "d"], [77, "Ir", "Iridium", "transition", 6, 9, "d"], [78, "Pt", "Platinum", "transition", 6, 10, "d"], [79, "Au", "Gold", "transition", 6, 11, "d"], [80, "Hg", "Mercury", "transition", 6, 12, "d"], [81, "Tl", "Thallium", "postTransition", 6, 13, "p"], [82, "Pb", "Lead", "postTransition", 6, 14, "p"], [83, "Bi", "Bismuth", "postTransition", 6, 15, "p"], [84, "Po", "Polonium", "postTransition", 6, 16, "p"], [85, "At", "Astatine", "halogen", 6, 17, "p"], [86, "Rn", "Radon", "noble", 6, 18, "p"],
-  [87, "Fr", "Francium", "alkali", 7, 1, "s"], [88, "Ra", "Radium", "alkaline", 7, 2, "s"], [89, "Ac", "Actinium", "actinide", 7, 3, "f"], [90, "Th", "Thorium", "actinide", 7, 3, "f"], [91, "Pa", "Protactinium", "actinide", 7, 3, "f"], [92, "U", "Uranium", "actinide", 7, 3, "f"], [93, "Np", "Neptunium", "actinide", 7, 3, "f"], [94, "Pu", "Plutonium", "actinide", 7, 3, "f"], [95, "Am", "Americium", "actinide", 7, 3, "f"], [96, "Cm", "Curium", "actinide", 7, 3, "f"], [97, "Bk", "Berkelium", "actinide", 7, 3, "f"], [98, "Cf", "Californium", "actinide", 7, 3, "f"], [99, "Es", "Einsteinium", "actinide", 7, 3, "f"], [100, "Fm", "Fermium", "actinide", 7, 3, "f"], [101, "Md", "Mendelevium", "actinide", 7, 3, "f"], [102, "No", "Nobelium", "actinide", 7, 3, "f"], [103, "Lr", "Lawrencium", "actinide", 7, 3, "f"],
-  [104, "Rf", "Rutherfordium", "transition", 7, 4, "d"], [105, "Db", "Dubnium", "transition", 7, 5, "d"], [106, "Sg", "Seaborgium", "transition", 7, 6, "d"], [107, "Bh", "Bohrium", "transition", 7, 7, "d"], [108, "Hs", "Hassium", "transition", 7, 8, "d"], [109, "Mt", "Meitnerium", "transition", 7, 9, "d"], [110, "Ds", "Darmstadtium", "transition", 7, 10, "d"], [111, "Rg", "Roentgenium", "transition", 7, 11, "d"], [112, "Cn", "Copernicium", "transition", 7, 12, "d"], [113, "Nh", "Nihonium", "postTransition", 7, 13, "p"], [114, "Fl", "Flerovium", "postTransition", 7, 14, "p"], [115, "Mc", "Moscovium", "postTransition", 7, 15, "p"], [116, "Lv", "Livermorium", "postTransition", 7, 16, "p"], [117, "Ts", "Tennessine", "halogen", 7, 17, "p"], [118, "Og", "Oganesson", "noble", 7, 18, "p"],
-  [119, "E119", "Element 119", "future", 8, 1, "s"], [120, "E120", "Element 120", "future", 8, 2, "s"],
-];
-
-function assert(condition, message) {
-  if (!condition) console.error(`Element Spiral Atlas validation failed: ${message}`);
-}
-
-function runDataValidation() {
-  assert(ELEMENTS.length === 120, "Expected 120 entries including 119 and 120 placeholders.");
-  const seen = new Set();
-  ELEMENTS.forEach((entry, index) => {
-    const [z, symbol, name, family, period, group, block] = entry;
-    assert(Array.isArray(entry) && entry.length === 7, `Entry ${index + 1} should have 7 fields.`);
-    assert(Number.isFinite(z), `Entry ${index + 1} has invalid atomic number.`);
-    assert(z === index + 1, `Atomic number sequence break at index ${index + 1}; found ${z}.`);
-    assert(!seen.has(z), `Duplicate atomic number ${z}.`);
-    assert(typeof symbol === "string" && symbol.length > 0, `Element ${z} missing symbol.`);
-    assert(typeof name === "string" && name.length > 0, `Element ${z} missing name.`);
-    assert(Boolean(FAMILY_COLORS[family]), `Element ${z} has unknown family '${family}'.`);
-    assert(Number.isFinite(period), `Element ${z} has invalid period.`);
-    assert(group === null || Number.isFinite(group), `Element ${z} has invalid group.`);
-    assert(Boolean(BLOCK_COLORS[block]), `Element ${z} has unknown block '${block}'.`);
-    seen.add(z);
-  });
-  Object.keys(PROPERTY_PRESETS).forEach((overlay) => assert(Boolean(PROPERTY_PRESETS[overlay]), `Overlay ${overlay} missing preset label.`));
-  Object.keys(VIEW_PRESETS).forEach((view) => assert(Boolean(VIEW_PRESETS[view]), `View mode ${view} missing preset label.`));
-  Object.keys(HARMONIC_FILTERS).forEach((root) => assert(root === "all" || Number(root) >= 1, `Harmonic filter ${root} invalid.`));
-  Object.keys(RESONANCE_MODES).forEach((mode) => assert(Boolean(RESONANCE_MODES[mode]), `Resonance mode ${mode} missing preset label.`));
-  assert(digitalRoot(3) === 3 && digitalRoot(12) === 3 && digitalRoot(18) === 9, "Digital-root smoke test failed.");
-  assert(Object.keys(PROPERTY_META).every((key) => PROPERTY_PRESETS[key]), "Every heatmap property should have an overlay preset.");
-}
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  PHI,
+  FAMILY_COLORS,
+  FAMILY_LABELS,
+  BLOCK_COLORS,
+  PROPERTY_PRESETS,
+  VIEW_PRESETS,
+  HARMONIC_FILTERS,
+  RESONANCE_MODES,
+  MAGIC_PROTONS,
+  MAGIC_NEUTRONS,
+  ISOTOPE_PRESETS,
+  LAB_EXPERIMENTS,
+  CORRELATION_PROPERTIES,
+  COMPLETENESS_FIELDS,
+} from "./data/atlasConstants.js";
+import { ELEMENTS } from "./data/elementsBase.js";
+import { EMPTY_ELEMENT_PROPERTIES, PROPERTY_SEEDS } from "./data/propertySeeds.js";
+import { PROPERTY_META } from "./data/propertyMeta.js";
+import { PROPERTY_SOURCES } from "./data/propertySources.js";
+import { DATA_CURATION_STATUS } from "./data/dataCurationStatus.js";
+import { DEG, GOLDEN_ANGLE, bandFromZ, digitalRoot, heatColor, nearestMagic, parityLabel, sectorFromAngle } from "./lib/atlasMath.js";
+import { runDataValidation } from "./data/dataValidation.js";
 
 function cardStyle(extra = {}) {
   return {
@@ -210,47 +46,34 @@ function buttonStyle(active = false) {
   };
 }
 
-function digitalRoot(n) {
-  if (!Number.isFinite(n) || n <= 0) return 0;
-  return ((Math.trunc(n) - 1) % 9) + 1;
-}
-
-function sectorFromAngle(theta) {
-  const a = ((theta % 360) + 360) % 360;
-  if (a >= 90 && a < 210) return 1;
-  if (a >= 210 && a < 330) return 2;
-  return 3;
-}
-
-function bandFromZ(z) {
-  if (z <= 2) return 1;
-  if (z <= 10) return 2;
-  if (z <= 18) return 3;
-  if (z <= 36) return 4;
-  if (z <= 54) return 5;
-  return 6;
-}
-
-function getProps(z) {
-  const props = PROPERTY_SEEDS[z] || {};
+function detailsPanelStyle(extra = {}) {
   return {
-    atomicMass: props.atomicMass ?? null,
-    electronegativity: props.electronegativity ?? null,
-    ionization: props.ionization ?? null,
-    density: props.density ?? null,
-    stable: props.stable ?? (z <= 82 ? true : z <= 118 ? false : null),
-    discovered: props.discovered ?? null,
+    ...cardStyle({ padding: 16 }),
+    overflow: "hidden",
+    ...extra,
   };
 }
 
-function heatColor(value, min, max) {
-  if (value === null || value === undefined || Number.isNaN(value) || !Number.isFinite(value)) return "#e5e7eb";
-  const safeMin = Number.isFinite(min) ? min : 0;
-  const safeMax = Number.isFinite(max) && max !== safeMin ? max : safeMin + 1;
-  const t = Math.max(0, Math.min(1, (value - safeMin) / (safeMax - safeMin)));
-  const hue = 220 - 180 * t;
-  return `hsl(${hue}, 78%, 76%)`;
+const summaryStyle = {
+  cursor: "pointer",
+  fontWeight: 800,
+  fontSize: 16,
+  listStyle: "none",
+};
+
+
+
+
+function getProps(z) {
+  const props = PROPERTY_SEEDS[z] || {};
+  const fallbackStable = z <= 82 ? true : z <= 118 ? false : null;
+  return {
+    ...EMPTY_ELEMENT_PROPERTIES,
+    ...props,
+    stable: props.stable ?? fallbackStable,
+  };
 }
+
 
 function colorFor(element, overlay) {
   if (!Array.isArray(element)) return FAMILY_COLORS.unknown;
@@ -423,22 +246,6 @@ function buildFrontierCorridor(nodes) {
   });
 }
 
-
-function nearestMagic(value, magicNumbers) {
-  const nearest = magicNumbers.reduce((best, candidate) => {
-    const distance = Math.abs(candidate - value);
-    return distance < best.distance ? { value: candidate, distance } : best;
-  }, { value: magicNumbers[0], distance: Math.abs(magicNumbers[0] - value) });
-  return nearest;
-}
-
-function parityLabel(z, n) {
-  const zEven = z % 2 === 0;
-  const nEven = n % 2 === 0;
-  if (zEven && nEven) return "even-even";
-  if (!zEven && !nEven) return "odd-odd";
-  return zEven ? "even-odd" : "odd-even";
-}
 
 function scoreIsotopeCandidate(node, neutronNumber) {
   if (!node || !Number.isFinite(neutronNumber)) return null;
@@ -623,6 +430,27 @@ function buildSelectedInsightTags(selectedNode, resonanceGraph, isotopeCandidate
   if (isotopeCandidate?.score >= 7.5) tags.push("high isotope-preview signal");
   if (!tags.length) tags.push(`${symbol}${z} has sparse seeded insight data`);
   return tags;
+}
+
+
+function scaleForViewMode(viewMode) {
+  // v2.0.1 visual balance:
+  // seed view uses a larger radius scale so the public demo fills the atlas card;
+  // ribbon/table preserve earlier spacing for readability.
+  if (viewMode === "seed") return 34;
+  if (viewMode === "ribbon") return 26;
+  return 26;
+}
+
+function useViewportWidth() {
+  const [width, setWidth] = useState(() => (typeof window === "undefined" ? 1440 : window.innerWidth));
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const onResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return width;
 }
 
 function buildAtlasReceipt({ selectedNode, viewMode, overlay, harmonicFilter, resonanceMode, isotopeN, showResonance, insightEngine }) {
@@ -1070,7 +898,21 @@ function exportPng(svgEl, filename = "phi369-element-spiral-atlas-v1.png") {
   img.src = url;
 }
 
-runDataValidation();
+runDataValidation({
+  elements: ELEMENTS,
+  familyColors: FAMILY_COLORS,
+  blockColors: BLOCK_COLORS,
+  propertyPresets: PROPERTY_PRESETS,
+  viewPresets: VIEW_PRESETS,
+  harmonicFilters: HARMONIC_FILTERS,
+  resonanceModes: RESONANCE_MODES,
+  propertyMeta: PROPERTY_META,
+  propertySeeds: PROPERTY_SEEDS,
+  propertySources: PROPERTY_SOURCES,
+  emptyElementProperties: EMPTY_ELEMENT_PROPERTIES,
+  completenessFields: COMPLETENESS_FIELDS,
+  digitalRoot,
+});
 
 function SpiralGuides({ center, maxR, show369 }) {
   const bands = [1, 2, 3, 4, 5, 6].map((i) => (maxR / 6) * i);
@@ -1232,7 +1074,10 @@ export default function ElementSpiralAtlas() {
   const center = 380;
   const maxR = 290;
 
-  const nodes = useMemo(() => computeNodes(26, center, viewMode), [center, viewMode]);
+  const viewportWidth = useViewportWidth();
+  const isCompact = viewportWidth < 1180;
+  const nodeScale = scaleForViewMode(viewMode);
+  const nodes = useMemo(() => computeNodes(nodeScale, center, viewMode), [center, nodeScale, viewMode]);
   const selectedNode = useMemo(() => nodes.find((node) => node.z === selectedZ) || nodes[0], [nodes, selectedZ]);
   const compareNode = useMemo(() => nodes.find((node) => node.z === compareZ) || nodes.find((node) => node.z === 26) || nodes[0], [nodes, compareZ]);
   const visibleNodes = useMemo(() => nodes.filter((node) => showFuture || node.z <= 118), [nodes, showFuture]);
@@ -1314,6 +1159,8 @@ export default function ElementSpiralAtlas() {
     researchNotebook,
     currentSnapshot,
     snapshotDelta,
+    dataCurationStatus: DATA_CURATION_STATUS || null,
+    propertySources: PROPERTY_SOURCES || {},
     v2Lab: {
       labExperiment,
       xProperty,
@@ -1335,13 +1182,13 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.0</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.6</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.0 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.6 research lab, correlation engine, and protocol compiler</p>
         </header>
 
-        <main style={{ display: "grid", gridTemplateColumns: "minmax(250px, 280px) minmax(520px, 1fr) minmax(270px, 310px)", gap: 16, alignItems: "start" }}>
+        <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
           <aside style={{ display: "grid", gap: 16 }}>
             <section style={cardStyle({ padding: 16 })}>
               <h2 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 8px", fontSize: 16 }}>◎ How to read</h2>
@@ -1372,6 +1219,7 @@ export default function ElementSpiralAtlas() {
                   <select value={viewMode} onChange={(event) => setViewMode(event.target.value)} style={{ width: "100%", border: "1px solid #cbd5e1", borderRadius: 14, padding: "9px 11px", background: "white", fontSize: 14 }}>
                     {Object.entries(VIEW_PRESETS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
                   </select>
+                  <p style={{ margin: 0, fontSize: 11, lineHeight: 1.4, color: "#64748b" }}>Tip: Spiral ribbon is best for presentation; golden seed field is best for clustering and heatmaps.</p>
                 </label>
 
                 <label style={{ display: "grid", gap: 6 }}>
@@ -1446,7 +1294,7 @@ export default function ElementSpiralAtlas() {
           </aside>
 
           <section style={cardStyle({ overflow: "hidden", borderRadius: 28, border: "1px solid rgba(217, 119, 6, 0.36)", padding: 10 })}>
-            <svg ref={svgRef} viewBox="0 0 760 760" role="img" aria-label="Fibonacci spiral map of periodic table elements" style={{ display: "block", width: "100%", minHeight: 560, maxHeight: "74vh", borderRadius: 22, background: "#fffaf0" }}>
+            <svg ref={svgRef} viewBox="0 0 760 760" role="img" aria-label="Fibonacci spiral map of periodic table elements" style={{ display: "block", width: "100%", minHeight: 640, maxHeight: "78vh", borderRadius: 22, background: "#fffaf0" }}>
               <defs><filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.18" /></filter></defs>
 
               {viewMode !== "table" ? (
@@ -1503,10 +1351,23 @@ export default function ElementSpiralAtlas() {
           <aside style={{ display: "grid", gap: 16 }}>
             <section style={cardStyle({ padding: 16 })}>
               <h2 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 10px", fontSize: 16 }}>⚛ Selected node</h2>
-              <div style={{ border: "1px solid rgba(15, 23, 42, 0.18)", borderRadius: 20, padding: 16, background: colorFor(selectedNode.raw, overlay) }}><div style={{ fontSize: 13, fontWeight: 800 }}>{z}</div><div style={{ fontSize: 52, fontWeight: 950, lineHeight: 0.95 }}>{symbol}</div><div style={{ marginTop: 4, fontSize: 18, fontWeight: 750 }}>{name}</div></div>
+              <div style={{ border: "1px solid rgba(15, 23, 42, 0.18)", borderRadius: 20, padding: 16, background: colorFor(selectedNode.raw, overlay) }}><div style={{ fontSize: 13, fontWeight: 800 }}>{z}</div><div style={{ fontSize: "clamp(42px, 4vw, 52px)", fontWeight: 950, lineHeight: 0.95 }}>{symbol}</div><div style={{ marginTop: 4, fontSize: 18, fontWeight: 750 }}>{name}</div></div>
               <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12 }}>
                 <Field label="Family">{FAMILY_LABELS[family] || FAMILY_LABELS.unknown}</Field><Field label="Period">{period}</Field><Field label="Group">{group ?? "—"}</Field><Field label="Block">{block}</Field><Field label="Digital root">{selectedNode.dr}</Field><Field label="Sector / Band">{selectedNode.sector} / {selectedNode.band}</Field><Field label="Atomic mass">{formatProp(selectedProps.atomicMass, "u")}</Field><Field label="Electronegativity">{formatProp(selectedProps.electronegativity)}</Field><Field label="Ionization">{formatProp(selectedProps.ionization, "eV")}</Field><Field label="Density">{formatProp(selectedProps.density, "g/cm³")}</Field><Field label="Stability">{selectedProps.stable === true ? "stable seed" : selectedProps.stable === false ? "radioactive/frontier" : "unknown"}</Field><Field label="Discovered">{formatYear(selectedProps.discovered)}</Field><Field label="Angle" wide>{selectedNode.theta.toFixed(3)}° from golden-angle projection</Field>
               </div>
+              <details style={{ marginTop: 10 }}>
+                <summary style={{ cursor: "pointer", fontSize: 12, fontWeight: 700, color: "#334155" }}>Extended properties</summary>
+                <div style={{ marginTop: 8, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12 }}>
+                  <Field label="Phase">{selectedProps.phaseAtSTP || "—"}</Field>
+                  <Field label="Occurrence">{selectedProps.occurrence || "—"}</Field>
+                  <Field label="Electron config" wide>{selectedProps.electronConfiguration || "—"}</Field>
+                  <Field label="Melting point">{formatProp(selectedProps.meltingPointK, "K")}</Field>
+                  <Field label="Boiling point">{formatProp(selectedProps.boilingPointK, "K")}</Field>
+                  <Field label="Stable isotopes">{formatProp(selectedProps.stableIsotopeCount)}</Field>
+                  <Field label="Half-life">{selectedProps.halfLife || "—"}</Field>
+                  <Field label="Decay mode">{selectedProps.decayMode || "—"}</Field>
+                </div>
+              </details>
             </section>
 
             <section style={cardStyle({ padding: 16 })}>
@@ -1524,16 +1385,34 @@ export default function ElementSpiralAtlas() {
               <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                 <div><b>Mode:</b> {RESONANCE_MODES[resonanceMode] || resonanceMode}</div>
                 <div><b>Edges:</b> {resonanceGraph.edges.length}</div>
-                {resonanceGraph.summary.length ? resonanceGraph.summary.map((item) => (
+                {resonanceGraph.summary.length ? resonanceGraph.summary.slice(0, 6).map((item) => (
                   <button key={`res-panel-${item.z}`} style={{ ...buttonStyle(false), textAlign: "left", borderRadius: 12 }} onClick={() => setSelectedZ(item.z)}>
                     {item.symbol}{item.z} — {item.reason} · score {item.score}
                   </button>
                 )) : <div style={{ color: "#64748b" }}>No graph links for this mode.</div>}
+                {resonanceGraph.summary.length > 6 && (
+                  <div style={{ fontSize: 11, color: "#64748b" }}>
+                    +{resonanceGraph.summary.length - 6} more links in export payload
+                  </div>
+                )}
               </div>
             </section>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Insight engine</h2>
+                      </aside>
+        </main>
+
+        <section style={{ marginTop: 12 }}>
+          <p style={{ margin: 0, fontSize: 12, color: "#64748b" }}>Advanced panels are grouped below so the atlas remains the visual center.</p>
+        </section>
+
+        <section style={cardStyle({ marginTop: 16, padding: 16 })}>
+          <div style={{ marginBottom: 12 }}>
+            <h2 style={{ margin: "0 0 4px", fontSize: 22 }}>Research Workbench</h2>
+            <p style={{ margin: 0, color: "#64748b", fontSize: 13 }}>Advanced analysis, notebook, frontier, and data panels.</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : viewportWidth < 1500 ? "repeat(2, minmax(0, 1fr))" : "repeat(3, minmax(0, 1fr))", gap: 12, alignItems: "start" }}>
+<details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Insight engine</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v1.5 converts the active atlas state into a lightweight research receipt and data-driven prompts for deeper investigation.</p>
               <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1556,10 +1435,10 @@ export default function ElementSpiralAtlas() {
                 </div>
                 <button style={buttonStyle(false)} onClick={() => navigator?.clipboard?.writeText?.(JSON.stringify(atlasReceipt, null, 2))}>Copy receipt JSON</button>
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>v2.0 Research Lab</h2>
+            <details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>v2.6 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1606,10 +1485,10 @@ export default function ElementSpiralAtlas() {
                   </div>
                 )}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Research notebook</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Research notebook</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v2.0 pairs the notebook with lab protocols, correlation checks, and report-ready exports.</p>
               <textarea
                 value={researchNote}
@@ -1649,10 +1528,10 @@ export default function ElementSpiralAtlas() {
                   ))}
                 </div>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Comparison lens</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Comparison lens</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compare the selected element against a second element without changing the active node.</p>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
                 <input type="number" min="1" max={showFuture ? 120 : 118} value={compareZ} onChange={(event) => setCompareZ(Math.max(1, Math.min(showFuture ? 120 : 118, Number(event.target.value) || 1)))} style={{ width: 84, border: "1px solid #cbd5e1", borderRadius: 12, padding: "8px 9px", fontSize: 13 }} />
@@ -1674,10 +1553,10 @@ export default function ElementSpiralAtlas() {
                   </div>
                 </div>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Active overlay stats</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Active overlay stats</summary>
               {activePropertyStats ? (
                 <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                   <div><b>{activePropertyStats.label}</b> coverage: {activePropertyStats.count}/118</div>
@@ -1688,18 +1567,18 @@ export default function ElementSpiralAtlas() {
               ) : (
                 <p style={{ margin: 0, fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Switch to a numeric heatmap overlay to see min / max / average summaries.</p>
               )}
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Data completeness</h2>
+            <details open style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Data completeness</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>v1.1 tracks scientific-property coverage and separates seeded values from unknown/null fields.</p>
               <CompletenessPanel report={completenessReport} />
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}><h2 style={{ margin: "0 0 10px", fontSize: 16 }}>Legend</h2><Legend overlay={overlay} /></section>
-            <section style={cardStyle({ padding: 16 })}><h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Claim discipline</h2><p style={{ margin: 0, fontSize: 14, lineHeight: 1.52, color: "#475569" }}>This atlas is an alternate visualization of known element data. It can compare patterns, highlight superheavy frontier zones, and test correlations, but it does not claim new elements without experimental evidence.</p></section>
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Next frontier</h2>
+            <details style={detailsPanelStyle()}><summary style={summaryStyle}>Legend</summary><Legend overlay={overlay} /></details>
+            <details style={detailsPanelStyle()}><summary style={summaryStyle}>Claim discipline</summary><p style={{ margin: "10px 0 0", fontSize: 14, lineHeight: 1.52, color: "#475569" }}>This atlas is an alternate visualization of known element data. It can compare patterns, highlight superheavy frontier zones, and test correlations, but it does not claim new elements without experimental evidence.</p></details>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Next frontier</summary>
               <p style={{ margin: 0, fontSize: 14, lineHeight: 1.52, color: "#475569" }}>Ghost nodes 119 and 120 are future/unconfirmed placeholders. The corridor score below is geometry-only and is not an experimental discovery claim.</p>
               <div style={{ marginTop: 12, display: "flex", gap: 8 }}><button style={buttonStyle(selectedZ === 119)} onClick={() => setSelectedZ(119)}>E119</button><button style={buttonStyle(selectedZ === 120)} onClick={() => setSelectedZ(120)}>E120</button></div>
               <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
@@ -1710,10 +1589,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Isotope stability preview</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Isotope stability preview</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Educational N/Z and magic-number lens for the selected element. This is a heuristic preview only.</p>
               {isotopeCandidate && (
                 <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
@@ -1736,10 +1615,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Harmonic families</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Harmonic families</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Root-family counts for known elements. Use the Harmonic Lens control to isolate a family on the atlas.</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
                 {harmonicSummary.map((item) => (
@@ -1749,10 +1628,10 @@ export default function ElementSpiralAtlas() {
                 ))}
               </div>
               <button style={{ ...buttonStyle(harmonicFilter === "all"), marginTop: 8 }} onClick={() => setHarmonicFilter("all")}>Show all roots</button>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Nearest seeded matches</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Nearest seeded matches</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Similarity uses available seeded numeric properties, with tiny bonuses for matching family or digital root.</p>
               <div style={{ display: "grid", gap: 8 }}>
                 {similarityScan.map((item) => (
@@ -1762,10 +1641,10 @@ export default function ElementSpiralAtlas() {
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
 
-            <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>Pattern scanner</h2>
+            <details  style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Pattern scanner</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compares seeded scientific values across the 3-line, 6-line, and 9-line digital-root families.</p>
               <div style={{ display: "grid", gap: 10 }}>
                 {patternScan.map((scan) => (
@@ -1774,15 +1653,44 @@ export default function ElementSpiralAtlas() {
                     <div style={{ marginTop: 7, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, fontSize: 11 }}>
                       {scan.lineAverages.map((item) => <div key={`${scan.property}-${item.line}`} style={{ background: item.line === 3 ? "#ede9fe" : item.line === 6 ? "#dbeafe" : "#fef3c7", borderRadius: 9, padding: 6 }}><b>{item.line}-line</b><br />{item.average === null ? "—" : `${item.average.toFixed(2)} ${scan.unit}`}</div>)}
                     </div>
+                  <div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
                   </div>
                 ))}
               </div>
-            </section>
-          </aside>
-        </main>
+            </details>
+
+            <details style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Data Curation Status</summary>
+              <div style={{ marginTop: 8, display: "grid", gap: 6, fontSize: 12 }}>
+                <div><b>Schema:</b> {DATA_CURATION_STATUS?.schemaVersion || "unknown"}</div>
+                <div><b>Status:</b> {DATA_CURATION_STATUS?.status || "unknown"}</div>
+                <div style={{ color: "#64748b" }}>{DATA_CURATION_STATUS?.claim || "This atlas keeps claim boundaries and does not replace authoritative references."}</div>
+                {Object.entries(DATA_CURATION_STATUS.fields).slice(0, 8).map(([field, meta]) => (
+                  <div key={field}><b>{field}</b> — {meta.status}<div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
+                  </div>
+                ))}
+              </div>
+            </details>
+
+            <details style={detailsPanelStyle()}>
+              <summary style={summaryStyle}>Data Sources</summary>
+              <div style={{ marginTop: 8, display: "grid", gap: 7, fontSize: 12 }}>
+                {Object.entries(PROPERTY_SOURCES || {}).length ? Object.entries(PROPERTY_SOURCES || {}).map(([id, source]) => (
+                  <div key={id}>
+                    {typeof source?.url === "string" ? <a href={source.url} target="_blank" rel="noreferrer"><b>{source?.name || id}</b></a> : <b>{source?.name || id}</b>}<br />
+                    <span style={{ color: "#64748b" }}>{id} · {source?.type || "reference"} · {source?.retrievalDate || "—"}</span>
+                    <div style={{ fontSize: 11, color: "#64748b" }}>{source?.licenseNote || "—"}</div>
+                    {source?.notes ? <div style={{ fontSize: 11, color: "#64748b" }}>{source.notes}</div> : null}
+                  </div>
+                )) : <div style={{ color: "#64748b" }}>No source registry entries available.</div>}
+                <div style={{ color: "#64748b" }}>Sources identify intended references for curation; current public-alpha data remains incomplete.</div>
+              </div>
+            </details>
+          </div>
+        </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.0 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.6 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>
