@@ -62,3 +62,17 @@ Scope:
 
 Boundary:
 This remains a staged curation process. Electron configurations beyond Kr are intentionally not filled in this pass.
+
+
+## v2.8 Electron Configuration Batch 3
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe).
+
+Scope:
+- elements 1–54 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key exception/reference elements in the 37–54 range include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Xe are intentionally not filled in this pass.

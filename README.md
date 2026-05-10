@@ -105,3 +105,5 @@ The public demo includes a static loading fallback, React error boundary, and so
 See docs/RUNTIME_SAFETY.md.
 
 v2.7 expands electronConfiguration coverage through element 36 (Kr), with sourceRefs and tests. Later elements remain null-safe until curated.
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe), with sourceRefs and regression tests for key transition-metal configurations. Later elements remain null-safe until curated.

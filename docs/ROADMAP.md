@@ -94,3 +94,16 @@
 - Expand electronConfiguration coverage through Xe
 - Add additional exception regression checks
 - Continue staged sourceRefs and sourceNotes
+
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Preserve Nb/Mo/Ru/Rh/Pd/Ag configuration values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.9 Electron Configuration Batch 4
+- Expand electronConfiguration coverage through Rn
+- Add lanthanide/f-block boundary notes if needed
+- Continue staged sourceRefs and sourceNotes
+- Add additional exception regression checks

@@ -70,3 +70,8 @@ v2.6 adds retrieval-date and license-note metadata to source registry entries. I
 ## v2.7 electron configuration batch
 
 v2.7 extends electronConfiguration coverage from the first 18 elements through Kr (Z=36). This is still a limited curated seed layer and should be validated against source references before being treated as authoritative.
+
+
+## v2.8 electron configuration batch
+
+v2.8 extends electronConfiguration coverage from Kr through Xe (Z=54). This remains a limited curated seed layer and should be validated against source references before being treated as authoritative.

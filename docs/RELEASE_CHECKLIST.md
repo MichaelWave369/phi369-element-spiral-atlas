@@ -59,3 +59,8 @@
 - [ ] Cr/Cu exception configurations tested
 - [ ] Kr endpoint tested
 - [ ] later elements remain null-safe
+
+- [ ] electronConfiguration coverage through Z=54 tested
+- [ ] Nb/Mo/Ru/Rh/Pd/Ag configurations tested
+- [ ] Xe endpoint tested
+- [ ] later elements remain null-safe

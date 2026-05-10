@@ -65,3 +65,12 @@ electronConfiguration batch values reference:
 - pubchem
 
 Future versions should add per-field retrieval dates and source-specific notes.
+
+
+## v2.8 electron configuration sources
+
+electronConfiguration batch values reference:
+- rsc
+- pubchem
+
+Future versions should add per-field retrieval dates and source-specific notes.

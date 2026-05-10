@@ -98,8 +98,8 @@ export function runDataValidation({
         assert(typeof noteValue === "string" && noteValue.length > 0, `Property seed sourceNotes for Z=${z}.${noteKey} must be non-empty string.`);
       });
     }
-    if (Number(z) >= 1 && Number(z) <= 36) {
-      assert(typeof props.electronConfiguration === "string" && props.electronConfiguration.length > 0, `Z=${z} electronConfiguration required for batch 2.`);
+    if (Number(z) >= 1 && Number(z) <= 54) {
+      assert(typeof props.electronConfiguration === "string" && props.electronConfiguration.length > 0, `Z=${z} electronConfiguration required for batch 3.`);
       assert(Array.isArray(props.sourceRefs?.electronConfiguration), `Z=${z} sourceRefs.electronConfiguration is required.`);
     }
     if (props.sourceRefs) {
