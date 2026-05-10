@@ -11,3 +11,17 @@
 - [ ] Live demo URL loads
 - [ ] Vite base path matches repository name
 - [ ] GitHub Actions workflow does not enable npm cache unless package-lock.json exists
+
+## v0.1.0-public-alpha checklist
+
+- [ ] npm install succeeds
+- [ ] npm run build succeeds
+- [ ] GitHub Pages deployment succeeds
+- [ ] Live demo URL loads
+- [ ] README includes live demo URL
+- [ ] README includes license/deploy badges
+- [ ] Claim boundaries are present
+- [ ] LICENSE is present
+- [ ] RELEASE_NOTES.md exists
+- [ ] Screenshots are added, or screenshot placeholder is documented
+- [ ] Tag v0.1.0-public-alpha is ready to create
