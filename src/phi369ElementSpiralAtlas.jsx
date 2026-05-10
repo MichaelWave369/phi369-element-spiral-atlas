@@ -1159,8 +1159,8 @@ export default function ElementSpiralAtlas() {
     researchNotebook,
     currentSnapshot,
     snapshotDelta,
-    dataCurationStatus: DATA_CURATION_STATUS,
-    propertySources: PROPERTY_SOURCES,
+    dataCurationStatus: DATA_CURATION_STATUS || null,
+    propertySources: PROPERTY_SOURCES || {},
     v2Lab: {
       labExperiment,
       xProperty,
@@ -1662,9 +1662,9 @@ export default function ElementSpiralAtlas() {
             <details style={detailsPanelStyle()}>
               <summary style={summaryStyle}>Data Curation Status</summary>
               <div style={{ marginTop: 8, display: "grid", gap: 6, fontSize: 12 }}>
-                <div><b>Schema:</b> {DATA_CURATION_STATUS.schemaVersion}</div>
-                <div><b>Status:</b> {DATA_CURATION_STATUS.status}</div>
-                <div style={{ color: "#64748b" }}>{DATA_CURATION_STATUS.claim}</div>
+                <div><b>Schema:</b> {DATA_CURATION_STATUS?.schemaVersion || "unknown"}</div>
+                <div><b>Status:</b> {DATA_CURATION_STATUS?.status || "unknown"}</div>
+                <div style={{ color: "#64748b" }}>{DATA_CURATION_STATUS?.claim || "This atlas keeps claim boundaries and does not replace authoritative references."}</div>
                 {Object.entries(DATA_CURATION_STATUS.fields).slice(0, 8).map(([field, meta]) => (
                   <div key={field}><b>{field}</b> — {meta.status}<div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
                   </div>
@@ -1675,13 +1675,14 @@ export default function ElementSpiralAtlas() {
             <details style={detailsPanelStyle()}>
               <summary style={summaryStyle}>Data Sources</summary>
               <div style={{ marginTop: 8, display: "grid", gap: 7, fontSize: 12 }}>
-                {Object.values(PROPERTY_SOURCES).map((source) => (
-                  <div key={source.id}>
-                    <a href={source.url} target="_blank" rel="noreferrer"><b>{source.name}</b></a><br />
-                    <span style={{ color: "#64748b" }}>{source.id} · {source.type} · {source.retrievalDate}</span>
-                  <div style={{ fontSize: 11, color: "#64748b" }}>{source.licenseNote}</div>
+                {Object.entries(PROPERTY_SOURCES || {}).length ? Object.entries(PROPERTY_SOURCES || {}).map(([id, source]) => (
+                  <div key={id}>
+                    {typeof source?.url === "string" ? <a href={source.url} target="_blank" rel="noreferrer"><b>{source?.name || id}</b></a> : <b>{source?.name || id}</b>}<br />
+                    <span style={{ color: "#64748b" }}>{id} · {source?.type || "reference"} · {source?.retrievalDate || "—"}</span>
+                    <div style={{ fontSize: 11, color: "#64748b" }}>{source?.licenseNote || "—"}</div>
+                    {source?.notes ? <div style={{ fontSize: 11, color: "#64748b" }}>{source.notes}</div> : null}
                   </div>
-                ))}
+                )) : <div style={{ color: "#64748b" }}>No source registry entries available.</div>}
                 <div style={{ color: "#64748b" }}>Sources identify intended references for curation; current public-alpha data remains incomplete.</div>
               </div>
             </details>

@@ -26,3 +26,11 @@ base: "/phi369-element-spiral-atlas/"
 
 If the workflow fails with “Dependencies lock file is not found,” remove npm caching from actions/setup-node or commit a package-lock.json. This public-alpha workflow intentionally avoids caching until a lockfile is committed.
 
+
+## Troubleshooting
+
+If the deployed page is blank:
+- open browser devtools console
+- check for runtime TypeError or missing asset 404
+- verify Vite base path is /phi369-element-spiral-atlas/
+- verify the React error boundary is rendering any crash message
