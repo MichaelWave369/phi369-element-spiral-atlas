@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const PHI = (1 + Math.sqrt(5)) / 2;
 const GOLDEN_ANGLE = 360 * (1 - 1 / PHI);
@@ -625,6 +625,27 @@ function buildSelectedInsightTags(selectedNode, resonanceGraph, isotopeCandidate
   return tags;
 }
 
+
+function scaleForViewMode(viewMode) {
+  // v2.0.1 visual balance:
+  // seed view uses a larger radius scale so the public demo fills the atlas card;
+  // ribbon/table preserve earlier spacing for readability.
+  if (viewMode === "seed") return 34;
+  if (viewMode === "ribbon") return 26;
+  return 26;
+}
+
+function useViewportWidth() {
+  const [width, setWidth] = useState(() => (typeof window === "undefined" ? 1440 : window.innerWidth));
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const onResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return width;
+}
+
 function buildAtlasReceipt({ selectedNode, viewMode, overlay, harmonicFilter, resonanceMode, isotopeN, showResonance, insightEngine }) {
   const payload = {
     version: "2.0",
@@ -1232,7 +1253,10 @@ export default function ElementSpiralAtlas() {
   const center = 380;
   const maxR = 290;
 
-  const nodes = useMemo(() => computeNodes(26, center, viewMode), [center, viewMode]);
+  const viewportWidth = useViewportWidth();
+  const isCompact = viewportWidth < 1180;
+  const nodeScale = scaleForViewMode(viewMode);
+  const nodes = useMemo(() => computeNodes(nodeScale, center, viewMode), [center, nodeScale, viewMode]);
   const selectedNode = useMemo(() => nodes.find((node) => node.z === selectedZ) || nodes[0], [nodes, selectedZ]);
   const compareNode = useMemo(() => nodes.find((node) => node.z === compareZ) || nodes.find((node) => node.z === 26) || nodes[0], [nodes, compareZ]);
   const visibleNodes = useMemo(() => nodes.filter((node) => showFuture || node.z <= 118), [nodes, showFuture]);
@@ -1335,13 +1359,13 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.0</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.0.1</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.0 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.0.1 research lab, correlation engine, and protocol compiler</p>
         </header>
 
-        <main style={{ display: "grid", gridTemplateColumns: "minmax(250px, 280px) minmax(520px, 1fr) minmax(270px, 310px)", gap: 16, alignItems: "start" }}>
+        <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
           <aside style={{ display: "grid", gap: 16 }}>
             <section style={cardStyle({ padding: 16 })}>
               <h2 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 8px", fontSize: 16 }}>◎ How to read</h2>
@@ -1372,6 +1396,7 @@ export default function ElementSpiralAtlas() {
                   <select value={viewMode} onChange={(event) => setViewMode(event.target.value)} style={{ width: "100%", border: "1px solid #cbd5e1", borderRadius: 14, padding: "9px 11px", background: "white", fontSize: 14 }}>
                     {Object.entries(VIEW_PRESETS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
                   </select>
+                  <p style={{ margin: 0, fontSize: 11, lineHeight: 1.4, color: "#64748b" }}>Tip: Spiral ribbon is best for presentation; golden seed field is best for clustering and heatmaps.</p>
                 </label>
 
                 <label style={{ display: "grid", gap: 6 }}>
@@ -1446,7 +1471,7 @@ export default function ElementSpiralAtlas() {
           </aside>
 
           <section style={cardStyle({ overflow: "hidden", borderRadius: 28, border: "1px solid rgba(217, 119, 6, 0.36)", padding: 10 })}>
-            <svg ref={svgRef} viewBox="0 0 760 760" role="img" aria-label="Fibonacci spiral map of periodic table elements" style={{ display: "block", width: "100%", minHeight: 560, maxHeight: "74vh", borderRadius: 22, background: "#fffaf0" }}>
+            <svg ref={svgRef} viewBox="0 0 760 760" role="img" aria-label="Fibonacci spiral map of periodic table elements" style={{ display: "block", width: "100%", minHeight: 640, maxHeight: "78vh", borderRadius: 22, background: "#fffaf0" }}>
               <defs><filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.18" /></filter></defs>
 
               {viewMode !== "table" ? (
@@ -1503,7 +1528,7 @@ export default function ElementSpiralAtlas() {
           <aside style={{ display: "grid", gap: 16 }}>
             <section style={cardStyle({ padding: 16 })}>
               <h2 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 10px", fontSize: 16 }}>⚛ Selected node</h2>
-              <div style={{ border: "1px solid rgba(15, 23, 42, 0.18)", borderRadius: 20, padding: 16, background: colorFor(selectedNode.raw, overlay) }}><div style={{ fontSize: 13, fontWeight: 800 }}>{z}</div><div style={{ fontSize: 52, fontWeight: 950, lineHeight: 0.95 }}>{symbol}</div><div style={{ marginTop: 4, fontSize: 18, fontWeight: 750 }}>{name}</div></div>
+              <div style={{ border: "1px solid rgba(15, 23, 42, 0.18)", borderRadius: 20, padding: 16, background: colorFor(selectedNode.raw, overlay) }}><div style={{ fontSize: 13, fontWeight: 800 }}>{z}</div><div style={{ fontSize: "clamp(42px, 4vw, 52px)", fontWeight: 950, lineHeight: 0.95 }}>{symbol}</div><div style={{ marginTop: 4, fontSize: 18, fontWeight: 750 }}>{name}</div></div>
               <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12 }}>
                 <Field label="Family">{FAMILY_LABELS[family] || FAMILY_LABELS.unknown}</Field><Field label="Period">{period}</Field><Field label="Group">{group ?? "—"}</Field><Field label="Block">{block}</Field><Field label="Digital root">{selectedNode.dr}</Field><Field label="Sector / Band">{selectedNode.sector} / {selectedNode.band}</Field><Field label="Atomic mass">{formatProp(selectedProps.atomicMass, "u")}</Field><Field label="Electronegativity">{formatProp(selectedProps.electronegativity)}</Field><Field label="Ionization">{formatProp(selectedProps.ionization, "eV")}</Field><Field label="Density">{formatProp(selectedProps.density, "g/cm³")}</Field><Field label="Stability">{selectedProps.stable === true ? "stable seed" : selectedProps.stable === false ? "radioactive/frontier" : "unknown"}</Field><Field label="Discovered">{formatYear(selectedProps.discovered)}</Field><Field label="Angle" wide>{selectedNode.theta.toFixed(3)}° from golden-angle projection</Field>
               </div>
@@ -1524,11 +1549,16 @@ export default function ElementSpiralAtlas() {
               <div style={{ display: "grid", gap: 8, fontSize: 12 }}>
                 <div><b>Mode:</b> {RESONANCE_MODES[resonanceMode] || resonanceMode}</div>
                 <div><b>Edges:</b> {resonanceGraph.edges.length}</div>
-                {resonanceGraph.summary.length ? resonanceGraph.summary.map((item) => (
+                {resonanceGraph.summary.length ? resonanceGraph.summary.slice(0, 6).map((item) => (
                   <button key={`res-panel-${item.z}`} style={{ ...buttonStyle(false), textAlign: "left", borderRadius: 12 }} onClick={() => setSelectedZ(item.z)}>
                     {item.symbol}{item.z} — {item.reason} · score {item.score}
                   </button>
                 )) : <div style={{ color: "#64748b" }}>No graph links for this mode.</div>}
+                {resonanceGraph.summary.length > 6 && (
+                  <div style={{ fontSize: 11, color: "#64748b" }}>
+                    +{resonanceGraph.summary.length - 6} more links in export payload
+                  </div>
+                )}
               </div>
             </section>
 
@@ -1559,7 +1589,7 @@ export default function ElementSpiralAtlas() {
             </section>
 
             <section style={cardStyle({ padding: 16 })}>
-              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>v2.0 Research Lab</h2>
+              <h2 style={{ margin: "0 0 8px", fontSize: 16 }}>v2.0.1 Research Lab</h2>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1782,7 +1812,7 @@ export default function ElementSpiralAtlas() {
         </main>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.0 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.0.1 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>
