@@ -96,3 +96,14 @@ npm test
 v2.5 adds simplified phase-at-STP and occurrence coverage for confirmed elements, with sourceRefs and validation tests. Future versions may refine occurrence categories.
 
 v2.6 adds source retrieval metadata and a limited electron-configuration seed batch for elements 1–18. Electron configurations for later elements remain null until curated.
+
+
+## Runtime safety
+
+The public demo includes a static loading fallback, React error boundary, and source maps so runtime data-shape issues can be debugged instead of producing a blank page.
+
+See docs/RUNTIME_SAFETY.md.
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr), with sourceRefs and tests. Later elements remain null-safe until curated.
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe), with sourceRefs and regression tests for key transition-metal configurations. Later elements remain null-safe until curated.

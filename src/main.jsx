@@ -12,6 +12,8 @@ if (typeof window !== "undefined") {
   });
 }
 
+console.info("PHI369 Element Spiral Atlas boot", { version: "2.6.3" });
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />

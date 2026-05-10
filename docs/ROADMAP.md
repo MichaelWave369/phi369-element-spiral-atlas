@@ -74,3 +74,36 @@
 - Add source notes and retrieval dates per batch
 - Add fixture tests for expanded coverage
 - Keep null-safe incomplete fields
+
+
+## v2.6.3 Runtime Safety
+- Improve error-boundary fallback copy
+- Add reload and copy-error controls
+- Document runtime safety model
+- Preserve source maps for debugging
+- Confirm array-safe rendering posture
+
+
+## v2.7 Electron Configuration Batch 2
+- Expand electronConfiguration coverage through Kr
+- Preserve Cr/Cu ground-state exception values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Add additional exception regression checks
+- Continue staged sourceRefs and sourceNotes
+
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Preserve Nb/Mo/Ru/Rh/Pd/Ag configuration values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.9 Electron Configuration Batch 4
+- Expand electronConfiguration coverage through Rn
+- Add lanthanide/f-block boundary notes if needed
+- Continue staged sourceRefs and sourceNotes
+- Add additional exception regression checks
