@@ -38,3 +38,7 @@
 - [ ] SourceRefs validate against known source ids
 - [ ] No uncurated values invented
 - [ ] Null-safe behavior verified
+- [ ] phaseAtSTP coverage tested
+- [ ] occurrence coverage tested
+- [ ] 119/120 future-unconfirmed status tested
+- [ ] sourceRefs for curated phase/occurrence fields tested

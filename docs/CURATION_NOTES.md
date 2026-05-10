@@ -27,3 +27,15 @@ Missing values remain null.
 No values should be guessed.
 
 Future full-data passes should add citations, source retrieval dates, units, uncertainty notes, and validation fixtures.
+
+## v2.5 Data Batch 1
+
+v2.5 expands simplified phase-at-STP and occurrence coverage.
+
+Scope:
+- phaseAtSTP and occurrence for confirmed elements 1–118
+- occurrence labels for 119/120 as future-unconfirmed
+- sourceRefs for phaseAtSTP and occurrence
+
+Boundary:
+This is a simplified public-alpha classification. Future versions may refine occurrence categories such as trace-natural, primordial, decay-chain, or synthetic-only.

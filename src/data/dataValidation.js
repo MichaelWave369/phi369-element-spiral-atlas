@@ -61,6 +61,23 @@ export function runDataValidation({
       assert(allowedPropertyKeys.has(key), `Property seed for Z=${z} has unknown key '${key}'.`);
     });
   });
+
+  const allowedPhase = new Set(["solid", "liquid", "gas", null]);
+  const allowedOccurrence = new Set(["natural", "synthetic", "future-unconfirmed", null]);
+  elements.forEach((entry) => {
+    const z = entry[0];
+    const props = propertySeeds[z] || {};
+    assert(allowedPhase.has(props.phaseAtSTP ?? null), `Z=${z} has invalid phaseAtSTP '${props.phaseAtSTP}'.`);
+    assert(allowedOccurrence.has(props.occurrence ?? null), `Z=${z} has invalid occurrence '${props.occurrence}'.`);
+    if (z >= 1 && z <= 118) {
+      assert(props.occurrence === "natural" || props.occurrence === "synthetic", `Z=${z} occurrence should be natural/synthetic.`);
+    }
+    if (z === 119 || z === 120) {
+      assert(props.occurrence === "future-unconfirmed", `Z=${z} occurrence must be future-unconfirmed.`);
+      assert((props.phaseAtSTP ?? null) === null, `Z=${z} phaseAtSTP must be null.`);
+    }
+  });
+
   const sourceIds = new Set(Object.keys(propertySources || {}));
   Object.entries(propertySeeds).forEach(([z, props]) => {
     if (props.sourceRefs) {

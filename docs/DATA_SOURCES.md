@@ -39,3 +39,12 @@ Source ids currently include:
 - rsc
 - nist
 - pubchem
+
+## v2.5 batch notes
+
+phaseAtSTP and occurrence sourceRefs use:
+- rsc
+- pubchem
+- iupac where applicable for occurrence/identity boundaries
+
+Future versions should add retrieval dates and per-field citations.

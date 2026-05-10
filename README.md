@@ -92,3 +92,5 @@ Run:
 ```bash
 npm test
 ```
+
+v2.5 adds simplified phase-at-STP and occurrence coverage for confirmed elements, with sourceRefs and validation tests. Future versions may refine occurrence categories.

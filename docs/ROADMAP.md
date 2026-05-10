@@ -49,3 +49,16 @@
 - Add curated values in batches
 - Add source retrieval dates
 - Add per-field uncertainty notes
+
+## v2.5 Data Batch 1
+- Fill simplified phase-at-STP coverage for confirmed elements
+- Fill simplified occurrence classification
+- Add sourceRefs for phase/occurrence
+- Add validation tests for coverage
+- Preserve 119/120 ghost-node boundaries
+
+## v2.6 Data Batch 2
+- Add retrieval-date metadata
+- Refine occurrence categories
+- Begin electron-configuration batch
+- Add per-field source notes

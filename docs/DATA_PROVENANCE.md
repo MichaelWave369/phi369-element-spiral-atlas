@@ -57,3 +57,7 @@ These fields may remain null until curated values are added.
 ## v2.3 curated seed layer
 
 v2.3 begins limited curation for phase-at-STP and occurrence on a small reliable subset. These fields remain incomplete and should not be treated as a full authoritative dataset.
+
+## v2.5 phase/occurrence batch
+
+v2.5 fills a simplified phase-at-STP and occurrence layer for confirmed elements. These fields are intended for interface overlays and completeness tracking, not as a substitute for authoritative chemical references.
