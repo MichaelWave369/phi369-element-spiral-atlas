@@ -52,3 +52,8 @@ v2.2 expands the property schema to prepare for future curation. New supported f
 - decay mode
 
 These fields may remain null until curated values are added.
+
+
+## v2.3 curated seed layer
+
+v2.3 begins limited curation for phase-at-STP and occurrence on a small reliable subset. These fields remain incomplete and should not be treated as a full authoritative dataset.

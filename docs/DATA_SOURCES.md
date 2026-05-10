@@ -28,3 +28,14 @@ The current public alpha data is not yet a complete authoritative scientific dat
 Missing fields are represented as null.
 
 Elements 119 and 120 are included only as future/unconfirmed ghost placeholders.
+
+
+## v2.3 source registry
+
+The codebase now includes src/data/propertySources.js as the source registry for intended curation references.
+
+Source ids currently include:
+- iupac
+- rsc
+- nist
+- pubchem

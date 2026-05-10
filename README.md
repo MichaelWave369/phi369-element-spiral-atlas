@@ -72,3 +72,8 @@ The current public alpha uses a seeded scientific-property dataset for interface
 v2.2 expands the property schema for future curated data sources. The app remains null-safe: missing fields render as unknown rather than being guessed.
 
 See docs/DATA_SOURCES.md.
+
+
+v2.3 adds a source registry and curation-status registry. It begins a limited curated seed layer for phase-at-STP and occurrence while preserving null-safe behavior for incomplete fields.
+
+See docs/CURATION_NOTES.md and docs/DATA_SOURCES.md.

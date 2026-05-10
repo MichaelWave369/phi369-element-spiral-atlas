@@ -33,3 +33,8 @@
 - [ ] Expanded property schema validated
 - [ ] Missing fields remain null-safe
 - [ ] No invented values added for uncurated fields
+- [ ] Source registry updated
+- [ ] Curation status updated
+- [ ] SourceRefs validate against known source ids
+- [ ] No uncurated values invented
+- [ ] Null-safe behavior verified

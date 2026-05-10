@@ -35,3 +35,17 @@
 - Add citations per data field
 - Add uncertainty/source notes
 - Add data fixtures and validation tests
+
+
+## v2.3 Curated Dataset Foundation
+- Add property source registry
+- Add curation status registry
+- Add limited phase/occurrence seed layer
+- Add source-ref validation
+- Add curation notes
+
+## v2.4 Dataset Fixtures
+- Add fixture tests for data schema
+- Add curated values in batches
+- Add source retrieval dates
+- Add per-field uncertainty notes

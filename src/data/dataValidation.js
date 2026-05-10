@@ -12,6 +12,7 @@ export function runDataValidation({
   resonanceModes,
   propertyMeta,
   propertySeeds,
+  propertySources,
   emptyElementProperties,
   completenessFields,
   digitalRoot,
@@ -53,6 +54,17 @@ export function runDataValidation({
     Object.keys(props).forEach((key) => {
       assert(allowedPropertyKeys.has(key), `Property seed for Z=${z} has unknown key '${key}'.`);
     });
+  });
+  const sourceIds = new Set(Object.keys(propertySources || {}));
+  Object.entries(propertySeeds).forEach(([z, props]) => {
+    if (props.sourceRefs) {
+      Object.entries(props.sourceRefs).forEach(([field, ids]) => {
+        assert(Array.isArray(ids), `Property seed sourceRefs for Z=${z}.${field} must be an array.`);
+        ids.forEach((id) => {
+          assert(sourceIds.has(id), `Property seed sourceRefs for Z=${z}.${field} has unknown source id '${id}'.`);
+        });
+      });
+    }
   });
 
 }
