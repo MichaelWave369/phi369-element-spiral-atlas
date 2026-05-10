@@ -47,3 +47,10 @@
 - [ ] sourceNotes schema validates
 - [ ] electronConfiguration batch 1 validates
 - [ ] incomplete electronConfiguration fields remain null-safe
+
+- [ ] Runtime fallback displays build label
+- [ ] Error boundary copy-error button works
+- [ ] Reload button works
+- [ ] Source maps remain enabled
+- [ ] Runtime safety docs updated
+- [ ] Array-safe render posture preserved

@@ -11,7 +11,8 @@
     "check": "npm run test && npm run build",
     "test": "node --test",
     "validate:data": "node --test test/dataValidation.test.js",
-    "validate:math": "node --test test/atlasMath.test.js"
+    "validate:math": "node --test test/atlasMath.test.js",
+    "diagnose": "npm run test && npm run build"
   },
   "dependencies": {
     "react": "latest",
