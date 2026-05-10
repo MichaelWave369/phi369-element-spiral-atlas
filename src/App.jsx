@@ -4,7 +4,7 @@ import ElementSpiralAtlas from "./phi369ElementSpiralAtlas.jsx";
 class AtlasErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: null };
+    this.state = { error: null, info: null };
   }
 
   static getDerivedStateFromError(error) {
@@ -13,6 +13,7 @@ class AtlasErrorBoundary extends React.Component {
 
   componentDidCatch(error, info) {
     console.error("PHI369 Element Spiral Atlas render error:", error, info);
+    this.setState({ error, info });
   }
 
   render() {
@@ -23,9 +24,15 @@ class AtlasErrorBoundary extends React.Component {
             <h1 style={{ marginTop: 0 }}>PHI369 Element Spiral Atlas</h1>
             <p>The atlas encountered a runtime render error.</p>
             <p style={{ color: "#64748b" }}>This fallback prevents a blank page while the data/UI issue is fixed.</p>
+            <p style={{ margin: "8px 0", fontSize: 12, color: "#475569" }}>Build: v2.6.1</p>
             <pre style={{ whiteSpace: "pre-wrap", background: "#fff7ed", borderRadius: 12, padding: 12, fontSize: 12, overflow: "auto" }}>
-              {String(this.state.error?.message || this.state.error)}
+              {String(this.state.error?.stack || this.state.error?.message || this.state.error)}
             </pre>
+            {this.state.info?.componentStack && (
+              <pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", borderRadius: 12, padding: 12, fontSize: 12, overflow: "auto" }}>
+                {this.state.info.componentStack}
+              </pre>
+            )}
           </div>
         </div>
       );

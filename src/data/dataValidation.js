@@ -80,13 +80,13 @@ export function runDataValidation({
 
 
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  Object.entries(propertySources || {}).forEach(([key, source]) => {
-    assert(source?.id === key, `Property source '${key}' must have matching id.`);
-    assert(typeof source?.name === "string" && source.name.length > 0, `Property source '${key}' missing name.`);
-    assert(typeof source?.url === "string" && source.url.startsWith("https://"), `Property source '${key}' must use https URL.`);
-    assert(typeof source?.type === "string" && source.type.length > 0, `Property source '${key}' missing type.`);
-    assert(typeof source?.retrievalDate === "string" && dateRegex.test(source.retrievalDate), `Property source '${key}' has invalid retrievalDate.`);
-    assert(typeof source?.licenseNote === "string" && source.licenseNote.length > 0, `Property source '${key}' missing licenseNote.`);
+  Object.entries(propertySources || {}).forEach(([sourceId, sourceRecord]) => {
+    assert(sourceRecord?.id === sourceId, `Property source '${sourceId}' must have matching id.`);
+    assert(typeof sourceRecord?.name === "string" && sourceRecord.name.length > 0, `Property source '${sourceId}' missing name.`);
+    assert(typeof sourceRecord?.url === "string" && sourceRecord.url.startsWith("https://"), `Property source '${sourceId}' must use https URL.`);
+    assert(typeof sourceRecord?.type === "string" && sourceRecord.type.length > 0, `Property source '${sourceId}' missing type.`);
+    assert(typeof sourceRecord?.retrievalDate === "string" && dateRegex.test(sourceRecord.retrievalDate), `Property source '${sourceId}' has invalid retrievalDate.`);
+    assert(typeof sourceRecord?.licenseNote === "string" && sourceRecord.licenseNote.length > 0, `Property source '${sourceId}' missing licenseNote.`);
   });
   const sourceIds = new Set(Object.keys(propertySources || {}));
   Object.entries(propertySeeds).forEach(([z, props]) => {
