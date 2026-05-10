@@ -11,6 +11,9 @@ export function runDataValidation({
   harmonicFilters,
   resonanceModes,
   propertyMeta,
+  propertySeeds,
+  emptyElementProperties,
+  completenessFields,
   digitalRoot,
 }) {
   assert(elements.length === 120, "Expected 120 entries including 119 and 120 placeholders.");
@@ -38,4 +41,18 @@ export function runDataValidation({
   Object.keys(resonanceModes).forEach((mode) => assert(Boolean(resonanceModes[mode]), `Resonance mode ${mode} missing preset label.`));
   assert(digitalRoot(3) === 3 && digitalRoot(12) === 3 && digitalRoot(18) === 9, "Digital-root smoke test failed.");
   assert(Object.keys(propertyMeta).every((key) => propertyPresets[key]), "Every heatmap property should have an overlay preset.");
+  const completenessKeys = new Set();
+  completenessFields.forEach((field, index) => {
+    assert(typeof field?.key === "string" && field.key.length > 0, `Completeness field ${index + 1} missing key.`);
+    assert(typeof field?.label === "string" && field.label.length > 0, `Completeness field '${field?.key ?? index + 1}' missing label.`);
+    completenessKeys.add(field.key);
+  });
+  Object.keys(emptyElementProperties).forEach((key) => assert(completenessKeys.has(key), `Completeness fields missing key '${key}'.`));
+  const allowedPropertyKeys = new Set(Object.keys(emptyElementProperties));
+  Object.entries(propertySeeds).forEach(([z, props]) => {
+    Object.keys(props).forEach((key) => {
+      assert(allowedPropertyKeys.has(key), `Property seed for Z=${z} has unknown key '${key}'.`);
+    });
+  });
+
 }

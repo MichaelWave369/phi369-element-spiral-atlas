@@ -68,3 +68,7 @@ GitHub Pages is configured to deploy from GitHub Actions using the repository wo
 ## Data status
 
 The current public alpha uses a seeded scientific-property dataset for interface development. Missing values are shown as unknown/null. See docs/DATA_PROVENANCE.md for data boundaries and future data-curation plans.
+
+v2.2 expands the property schema for future curated data sources. The app remains null-safe: missing fields render as unknown rather than being guessed.
+
+See docs/DATA_SOURCES.md.

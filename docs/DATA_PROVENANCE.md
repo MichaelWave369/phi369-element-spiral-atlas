@@ -36,3 +36,19 @@ The current scientific-property layer should not be treated as a complete author
 Future versions should add curated data sources, citations, uncertainty notes, and validation fixtures.
 
 The atlas does not claim discovery of new elements and does not replace the standard periodic table.
+
+
+## Expanded v2.2 schema
+
+v2.2 expands the property schema to prepare for future curation. New supported fields include:
+- melting point K
+- boiling point K
+- phase at STP
+- occurrence
+- electron configuration
+- stable isotope count
+- standard atomic weight note
+- half-life
+- decay mode
+
+These fields may remain null until curated values are added.

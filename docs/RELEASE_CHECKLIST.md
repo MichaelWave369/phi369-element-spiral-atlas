@@ -29,3 +29,7 @@
 - [ ] Data provenance doc updated
 - [ ] Data validation passes without console errors
 - [ ] Ghost nodes 119/120 remain labeled future/unconfirmed
+- [ ] Data source notes updated
+- [ ] Expanded property schema validated
+- [ ] Missing fields remain null-safe
+- [ ] No invented values added for uncurated fields

@@ -1,3 +1,21 @@
+export const EMPTY_ELEMENT_PROPERTIES = {
+  atomicMass: null,
+  electronegativity: null,
+  ionization: null,
+  density: null,
+  meltingPointK: null,
+  boilingPointK: null,
+  phaseAtSTP: null,
+  occurrence: null,
+  electronConfiguration: null,
+  stableIsotopeCount: null,
+  standardAtomicWeightNote: null,
+  halfLife: null,
+  decayMode: null,
+  stable: null,
+  discovered: null,
+};
+
 export const PROPERTY_SEEDS = {
   1: { atomicMass: 1.008, electronegativity: 2.2, ionization: 13.598, density: 0.00008988, stable: true, discovered: 1766 },
   2: { atomicMass: 4.0026, electronegativity: null, ionization: 24.587, density: 0.0001785, stable: true, discovered: 1895 },

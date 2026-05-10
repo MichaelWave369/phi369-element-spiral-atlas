@@ -45,6 +45,15 @@ export const COMPLETENESS_FIELDS = [
   { key: "electronegativity", label: "Electronegativity" },
   { key: "ionization", label: "Ionization energy" },
   { key: "density", label: "Density" },
+  { key: "meltingPointK", label: "Melting point" },
+  { key: "boilingPointK", label: "Boiling point" },
+  { key: "phaseAtSTP", label: "Phase at STP" },
+  { key: "occurrence", label: "Occurrence" },
+  { key: "electronConfiguration", label: "Electron configuration" },
+  { key: "stableIsotopeCount", label: "Stable isotope count" },
+  { key: "standardAtomicWeightNote", label: "Atomic weight note" },
+  { key: "halfLife", label: "Half-life" },
+  { key: "decayMode", label: "Decay mode" },
   { key: "stable", label: "Stability flag" },
   { key: "discovered", label: "Discovery year" },
 ];
@@ -60,6 +69,9 @@ export const PROPERTY_PRESETS = {
   electronegativity: "Electronegativity heatmap",
   ionization: "1st ionization energy heatmap",
   density: "Density heatmap",
+  meltingPointK: "Melting point heatmap",
+  boilingPointK: "Boiling point heatmap",
+  stableIsotopeCount: "Stable isotope count heatmap",
 };
 
 export const VIEW_PRESETS = {

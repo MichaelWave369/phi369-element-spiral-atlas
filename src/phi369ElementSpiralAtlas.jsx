@@ -18,8 +18,8 @@ import {
   COMPLETENESS_FIELDS,
 } from "./data/atlasConstants.js";
 import { ELEMENTS } from "./data/elementsBase.js";
-import { PROPERTY_SEEDS } from "./data/propertySeeds.js";
-import { PROPERTY_META } from "./data/propertyMeta.js";
+import { EMPTY_ELEMENT_PROPERTIES, PROPERTY_SEEDS } from "./data/propertySeeds.js";
+import { PROPERTY_FIELD_LABELS, PROPERTY_META } from "./data/propertyMeta.js";
 import { runDataValidation } from "./data/dataValidation.js";
 
 function cardStyle(extra = {}) {
@@ -83,13 +83,11 @@ function bandFromZ(z) {
 
 function getProps(z) {
   const props = PROPERTY_SEEDS[z] || {};
+  const fallbackStable = z <= 82 ? true : z <= 118 ? false : null;
   return {
-    atomicMass: props.atomicMass ?? null,
-    electronegativity: props.electronegativity ?? null,
-    ionization: props.ionization ?? null,
-    density: props.density ?? null,
-    stable: props.stable ?? (z <= 82 ? true : z <= 118 ? false : null),
-    discovered: props.discovered ?? null,
+    ...EMPTY_ELEMENT_PROPERTIES,
+    ...props,
+    stable: props.stable ?? fallbackStable,
   };
 }
 
@@ -950,6 +948,9 @@ runDataValidation({
   harmonicFilters: HARMONIC_FILTERS,
   resonanceModes: RESONANCE_MODES,
   propertyMeta: PROPERTY_META,
+  propertySeeds: PROPERTY_SEEDS,
+  emptyElementProperties: EMPTY_ELEMENT_PROPERTIES,
+  completenessFields: COMPLETENESS_FIELDS,
   digitalRoot,
 });
 
@@ -1219,10 +1220,10 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.1</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.2</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.1 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.2 research lab, correlation engine, and protocol compiler</p>
         </header>
 
         <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
@@ -1392,6 +1393,19 @@ export default function ElementSpiralAtlas() {
               <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12 }}>
                 <Field label="Family">{FAMILY_LABELS[family] || FAMILY_LABELS.unknown}</Field><Field label="Period">{period}</Field><Field label="Group">{group ?? "—"}</Field><Field label="Block">{block}</Field><Field label="Digital root">{selectedNode.dr}</Field><Field label="Sector / Band">{selectedNode.sector} / {selectedNode.band}</Field><Field label="Atomic mass">{formatProp(selectedProps.atomicMass, "u")}</Field><Field label="Electronegativity">{formatProp(selectedProps.electronegativity)}</Field><Field label="Ionization">{formatProp(selectedProps.ionization, "eV")}</Field><Field label="Density">{formatProp(selectedProps.density, "g/cm³")}</Field><Field label="Stability">{selectedProps.stable === true ? "stable seed" : selectedProps.stable === false ? "radioactive/frontier" : "unknown"}</Field><Field label="Discovered">{formatYear(selectedProps.discovered)}</Field><Field label="Angle" wide>{selectedNode.theta.toFixed(3)}° from golden-angle projection</Field>
               </div>
+              <details style={{ marginTop: 10 }}>
+                <summary style={{ cursor: "pointer", fontSize: 12, fontWeight: 700, color: "#334155" }}>Extended properties</summary>
+                <div style={{ marginTop: 8, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12 }}>
+                  <Field label="Phase">{selectedProps.phaseAtSTP || "—"}</Field>
+                  <Field label="Occurrence">{selectedProps.occurrence || "—"}</Field>
+                  <Field label="Electron config" wide>{selectedProps.electronConfiguration || "—"}</Field>
+                  <Field label="Melting point">{formatProp(selectedProps.meltingPointK, "K")}</Field>
+                  <Field label="Boiling point">{formatProp(selectedProps.boilingPointK, "K")}</Field>
+                  <Field label="Stable isotopes">{formatProp(selectedProps.stableIsotopeCount)}</Field>
+                  <Field label="Half-life">{selectedProps.halfLife || "—"}</Field>
+                  <Field label="Decay mode">{selectedProps.decayMode || "—"}</Field>
+                </div>
+              </details>
             </section>
 
             <section style={cardStyle({ padding: 16 })}>
@@ -1462,7 +1476,7 @@ export default function ElementSpiralAtlas() {
             </details>
 
             <details open style={detailsPanelStyle()}>
-              <summary style={summaryStyle}>v2.1 Research Lab</summary>
+              <summary style={summaryStyle}>v2.2 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1686,7 +1700,7 @@ export default function ElementSpiralAtlas() {
         </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.1 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.2 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>
