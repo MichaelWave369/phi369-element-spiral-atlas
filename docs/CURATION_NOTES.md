@@ -49,3 +49,44 @@ v2.6 adds:
 
 Boundary:
 Electron configurations remain incomplete outside elements 1–18. Missing values remain null and should not be guessed.
+
+
+## v2.7 Electron Configuration Batch 2
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr).
+
+Scope:
+- elements 1–36 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Kr are intentionally not filled in this pass.
+
+
+## v2.8 Electron Configuration Batch 3
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe).
+
+Scope:
+- elements 1–54 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key exception/reference elements in the 37–54 range include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Xe are intentionally not filled in this pass.
+
+
+## v2.9 Electron Configuration Batch 4
+
+v2.9 expands electronConfiguration coverage through element 86 (Rn).
+
+Scope:
+- elements 1–86 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key f-block and heavy-element reference entries include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Some lanthanide and heavy-element configurations can vary by source notation. The v2.9 values use a simplified reference notation and should be verified before being treated as authoritative.
