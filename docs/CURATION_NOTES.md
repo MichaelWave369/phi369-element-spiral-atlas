@@ -76,3 +76,17 @@ Scope:
 
 Boundary:
 This remains a staged curation process. Electron configurations beyond Xe are intentionally not filled in this pass.
+
+
+## v2.9 Electron Configuration Batch 4
+
+v2.9 expands electronConfiguration coverage through element 86 (Rn).
+
+Scope:
+- elements 1–86 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key f-block and heavy-element reference entries include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Some lanthanide and heavy-element configurations can vary by source notation. The v2.9 values use a simplified reference notation and should be verified before being treated as authoritative.

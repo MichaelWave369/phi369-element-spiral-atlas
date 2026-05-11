@@ -107,3 +107,18 @@
 - Add lanthanide/f-block boundary notes if needed
 - Continue staged sourceRefs and sourceNotes
 - Add additional exception regression checks
+
+
+## v2.9 Electron Configuration Batch 4
+- Expand electronConfiguration coverage through Rn
+- Preserve key lanthanide/heavy-element configuration values
+- Add sourceRefs for covered batch
+- Add sourceNotes for f-block and exception/reference entries
+- Add validation tests for coverage and key values
+
+## v3.0 Electron Configuration Completion
+- Expand electronConfiguration coverage through Og
+- Keep 119/120 ghost placeholders null-safe
+- Add actinide/superheavy notation notes
+- Add additional exception regression checks
+- Prepare data status for full electronConfiguration coverage

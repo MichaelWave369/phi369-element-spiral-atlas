@@ -74,3 +74,12 @@ electronConfiguration batch values reference:
 - pubchem
 
 Future versions should add per-field retrieval dates and source-specific notes.
+
+
+## v2.9 electron configuration sources
+
+electronConfiguration batch values reference:
+- rsc
+- pubchem
+
+Lanthanide and heavy-element notation may vary by source. Future versions should add per-field retrieval dates, source-specific notes, and source-difference notes.

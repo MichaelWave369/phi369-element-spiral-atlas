@@ -1385,9 +1385,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   55: {
+    electronConfiguration: "[Xe] 6s1",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1400,9 +1405,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   56: {
+    electronConfiguration: "[Xe] 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1415,9 +1425,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   57: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 5d1 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1430,9 +1448,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   58: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f1 5d1 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1445,9 +1471,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   59: {
+    electronConfiguration: "[Xe] 4f3 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1460,9 +1491,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   60: {
+    electronConfiguration: "[Xe] 4f4 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1475,9 +1511,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   61: {
+    electronConfiguration: "[Xe] 4f5 6s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1490,9 +1531,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   62: {
+    electronConfiguration: "[Xe] 4f6 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1505,9 +1551,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   63: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f7 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1520,9 +1574,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   64: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f7 5d1 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1535,9 +1597,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   65: {
+    electronConfiguration: "[Xe] 4f9 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1550,9 +1617,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   66: {
+    electronConfiguration: "[Xe] 4f10 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1565,9 +1637,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   67: {
+    electronConfiguration: "[Xe] 4f11 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1580,9 +1657,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   68: {
+    electronConfiguration: "[Xe] 4f12 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1595,9 +1677,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   69: {
+    electronConfiguration: "[Xe] 4f13 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1610,9 +1697,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   70: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f14 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1625,9 +1720,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   71: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f14 5d1 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1640,9 +1743,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   72: {
+    electronConfiguration: "[Xe] 4f14 5d2 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1655,9 +1763,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   73: {
+    electronConfiguration: "[Xe] 4f14 5d3 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1670,9 +1783,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   74: {
+    electronConfiguration: "[Xe] 4f14 5d4 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1685,9 +1803,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   75: {
+    electronConfiguration: "[Xe] 4f14 5d5 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1700,9 +1823,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   76: {
+    electronConfiguration: "[Xe] 4f14 5d6 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1715,9 +1843,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   77: {
+    electronConfiguration: "[Xe] 4f14 5d7 6s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1730,9 +1863,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   78: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f14 5d9 6s1",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1745,6 +1886,10 @@ export const PROPERTY_SEEDS = {
     }
   },
   79: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f14 5d10 6s1",
     atomicMass: 196.96657,
     electronegativity: 2.54,
     ionization: 9.226,
@@ -1752,6 +1897,10 @@ export const PROPERTY_SEEDS = {
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       atomicMass: [
         "iupac",
         "rsc",
@@ -1771,9 +1920,14 @@ export const PROPERTY_SEEDS = {
     discovered: -6000
   },
   80: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2",
     phaseAtSTP: "liquid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1786,9 +1940,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   81: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p1",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1801,6 +1960,7 @@ export const PROPERTY_SEEDS = {
     }
   },
   82: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p2",
     atomicMass: 207.2,
     electronegativity: 2.33,
     ionization: 7.417,
@@ -1808,6 +1968,10 @@ export const PROPERTY_SEEDS = {
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       atomicMass: [
         "iupac",
         "rsc",
@@ -1827,9 +1991,14 @@ export const PROPERTY_SEEDS = {
     discovered: -7000
   },
   83: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p3",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1842,9 +2011,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   84: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p4",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1857,9 +2031,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   85: {
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p5",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -1872,9 +2051,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   86: {
+    sourceNotes: {
+      electronConfiguration: "v2.9 limited electron-configuration batch covering elements 55–86; lanthanide/heavy-element configurations may vary by source notation and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Xe] 4f14 5d10 6s2 6p6",
     phaseAtSTP: "gas",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"

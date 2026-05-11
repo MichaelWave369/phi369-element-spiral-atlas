@@ -107,3 +107,5 @@ See docs/RUNTIME_SAFETY.md.
 v2.7 expands electronConfiguration coverage through element 36 (Kr), with sourceRefs and tests. Later elements remain null-safe until curated.
 
 v2.8 expands electronConfiguration coverage through element 54 (Xe), with sourceRefs and regression tests for key transition-metal configurations. Later elements remain null-safe until curated.
+
+v2.9 expands electronConfiguration coverage through element 86 (Rn), with sourceRefs and regression tests for key lanthanide/heavy-element configurations. Later elements remain null-safe until curated.

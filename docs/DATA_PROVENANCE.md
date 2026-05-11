@@ -75,3 +75,8 @@ v2.7 extends electronConfiguration coverage from the first 18 elements through K
 ## v2.8 electron configuration batch
 
 v2.8 extends electronConfiguration coverage from Kr through Xe (Z=54). This remains a limited curated seed layer and should be validated against source references before being treated as authoritative.
+
+
+## v2.9 electron configuration batch
+
+v2.9 extends electronConfiguration coverage from Cs through Rn (Z=86). This includes lanthanide and heavy-element entries where source notation may vary. These values remain part of a staged public-alpha curation layer and should be validated against source references before being treated as authoritative.

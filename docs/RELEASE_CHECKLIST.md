@@ -64,3 +64,9 @@
 - [ ] Nb/Mo/Ru/Rh/Pd/Ag configurations tested
 - [ ] Xe endpoint tested
 - [ ] later elements remain null-safe
+
+- [ ] electronConfiguration coverage through Z=86 tested
+- [ ] La/Ce/Gd/Lu/Pt/Au configurations tested
+- [ ] Rn endpoint tested
+- [ ] later elements remain null-safe
+- [ ] lanthanide/heavy notation caveat documented
