@@ -90,3 +90,17 @@ Scope:
 
 Boundary:
 This remains a staged curation process. Some lanthanide and heavy-element configurations can vary by source notation. The v2.9 values use a simplified reference notation and should be verified before being treated as authoritative.
+
+
+## v3.0 Electron Configuration Completion
+
+v3.0 completes electronConfiguration coverage for confirmed elements 1–118.
+
+Scope:
+- confirmed elements 1–118 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for confirmed elements
+- key actinide/superheavy reference entries include sourceNotes
+- elements 119 and 120 remain future/unconfirmed ghost placeholders with null electronConfiguration
+
+Boundary:
+This remains staged public-alpha curation. Actinide and superheavy electron configurations may vary by source notation or model. The v3.0 values use simplified reference notation and should be verified before being treated as authoritative.

@@ -83,3 +83,12 @@ electronConfiguration batch values reference:
 - pubchem
 
 Lanthanide and heavy-element notation may vary by source. Future versions should add per-field retrieval dates, source-specific notes, and source-difference notes.
+
+
+## v3.0 electron configuration completion sources
+
+electronConfiguration completion values reference:
+- rsc
+- pubchem
+
+Actinide and superheavy notation may vary by source or prediction model. Future versions should add source-specific notes, retrieval dates per field batch, and notation-difference notes.

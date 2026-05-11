@@ -80,3 +80,8 @@ v2.8 extends electronConfiguration coverage from Kr through Xe (Z=54). This rema
 ## v2.9 electron configuration batch
 
 v2.9 extends electronConfiguration coverage from Cs through Rn (Z=86). This includes lanthanide and heavy-element entries where source notation may vary. These values remain part of a staged public-alpha curation layer and should be validated against source references before being treated as authoritative.
+
+
+## v3.0 electron configuration completion
+
+v3.0 completes electronConfiguration coverage for confirmed elements 1–118. Elements 119 and 120 remain ghost placeholders. Actinide and superheavy configurations are included as simplified reference notation and may vary by source/model.

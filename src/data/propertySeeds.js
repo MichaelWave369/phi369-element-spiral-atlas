@@ -2074,9 +2074,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   87: {
+    electronConfiguration: "[Rn] 7s1",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2089,9 +2094,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   88: {
+    electronConfiguration: "[Rn] 7s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2104,9 +2114,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   89: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 6d1 7s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2119,9 +2137,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   90: {
+    electronConfiguration: "[Rn] 6d2 7s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2134,9 +2157,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   91: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f2 6d1 7s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2149,6 +2180,10 @@ export const PROPERTY_SEEDS = {
     }
   },
   92: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f3 6d1 7s2",
     atomicMass: 238.02891,
     electronegativity: 1.38,
     ionization: 6.194,
@@ -2156,6 +2191,10 @@ export const PROPERTY_SEEDS = {
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       atomicMass: [
         "iupac",
         "rsc",
@@ -2175,9 +2214,14 @@ export const PROPERTY_SEEDS = {
     discovered: 1789
   },
   93: {
+    electronConfiguration: "[Rn] 5f4 6d1 7s2",
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2190,6 +2234,10 @@ export const PROPERTY_SEEDS = {
     }
   },
   94: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f6 7s2",
     atomicMass: 244,
     electronegativity: 1.28,
     ionization: 6.026,
@@ -2197,6 +2245,10 @@ export const PROPERTY_SEEDS = {
     phaseAtSTP: "solid",
     occurrence: "natural",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       atomicMass: [
         "iupac",
         "rsc",
@@ -2216,9 +2268,14 @@ export const PROPERTY_SEEDS = {
     discovered: 1940
   },
   95: {
+    electronConfiguration: "[Rn] 5f7 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2231,9 +2288,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   96: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f7 6d1 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2246,9 +2311,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   97: {
+    electronConfiguration: "[Rn] 5f9 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2261,9 +2331,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   98: {
+    electronConfiguration: "[Rn] 5f10 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2276,9 +2351,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   99: {
+    electronConfiguration: "[Rn] 5f11 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2291,9 +2371,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   100: {
+    electronConfiguration: "[Rn] 5f12 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2306,9 +2391,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   101: {
+    electronConfiguration: "[Rn] 5f13 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2321,9 +2411,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   102: {
+    electronConfiguration: "[Rn] 5f14 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2336,9 +2431,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   103: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f14 7s2 7p1",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2351,9 +2454,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   104: {
+    electronConfiguration: "[Rn] 5f14 6d2 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2366,9 +2474,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   105: {
+    electronConfiguration: "[Rn] 5f14 6d3 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2381,9 +2494,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   106: {
+    electronConfiguration: "[Rn] 5f14 6d4 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2396,9 +2514,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   107: {
+    electronConfiguration: "[Rn] 5f14 6d5 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2411,9 +2534,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   108: {
+    electronConfiguration: "[Rn] 5f14 6d6 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2426,9 +2554,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   109: {
+    electronConfiguration: "[Rn] 5f14 6d7 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2441,9 +2574,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   110: {
+    electronConfiguration: "[Rn] 5f14 6d8 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2456,9 +2594,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   111: {
+    electronConfiguration: "[Rn] 5f14 6d9 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2471,9 +2614,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   112: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f14 6d10 7s2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2486,9 +2637,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   113: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p1",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2501,9 +2660,17 @@ export const PROPERTY_SEEDS = {
     }
   },
   114: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p2",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2516,9 +2683,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   115: {
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p3",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2531,9 +2703,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   116: {
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p4",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2546,9 +2723,14 @@ export const PROPERTY_SEEDS = {
     }
   },
   117: {
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p5",
     phaseAtSTP: "solid",
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       phaseAtSTP: [
         "rsc",
         "pubchem"
@@ -2561,6 +2743,10 @@ export const PROPERTY_SEEDS = {
     }
   },
   118: {
+    sourceNotes: {
+      electronConfiguration: "v3.0 electron-configuration completion batch covering elements 87–118; actinide/superheavy configurations may vary by source notation or model and should be verified before being treated as authoritative."
+    },
+    electronConfiguration: "[Rn] 5f14 6d10 7s2 7p6",
     atomicMass: 294,
     electronegativity: null,
     ionization: null,
@@ -2568,6 +2754,10 @@ export const PROPERTY_SEEDS = {
     phaseAtSTP: null,
     occurrence: "synthetic",
     sourceRefs: {
+      electronConfiguration: [
+        "rsc",
+        "pubchem"
+      ],
       atomicMass: [
         "iupac",
         "rsc",
@@ -2587,10 +2777,12 @@ export const PROPERTY_SEEDS = {
     discovered: 2002
   },
   119: {
+    electronConfiguration: null,
     phaseAtSTP: null,
     occurrence: "future-unconfirmed"
   },
   120: {
+    electronConfiguration: null,
     phaseAtSTP: null,
     occurrence: "future-unconfirmed"
   }

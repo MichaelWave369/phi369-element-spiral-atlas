@@ -70,3 +70,9 @@
 - [ ] Rn endpoint tested
 - [ ] later elements remain null-safe
 - [ ] lanthanide/heavy notation caveat documented
+
+- [ ] electronConfiguration coverage through Z=118 tested
+- [ ] actinide/superheavy caveats documented
+- [ ] 119/120 electronConfiguration remains null
+- [ ] 119/120 sourceRefs.electronConfiguration remains absent/null
+- [ ] key actinide/superheavy regression values tested

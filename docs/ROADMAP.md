@@ -122,3 +122,17 @@
 - Add actinide/superheavy notation notes
 - Add additional exception regression checks
 - Prepare data status for full electronConfiguration coverage
+
+
+## v3.0 Electron Configuration Completion
+- Complete electronConfiguration coverage for confirmed elements 1–118
+- Keep 119/120 ghost placeholders null-safe
+- Add actinide/superheavy caveat notes
+- Add sourceRefs for confirmed elements
+- Add regression tests for key values and ghost boundaries
+
+## v3.1 Data Quality Review
+- Add per-batch retrieval-date notes
+- Add notation-difference notes for actinides/superheavy elements
+- Add optional data review table
+- Begin next curated field family after electronConfiguration

@@ -98,9 +98,13 @@ export function runDataValidation({
         assert(typeof noteValue === "string" && noteValue.length > 0, `Property seed sourceNotes for Z=${z}.${noteKey} must be non-empty string.`);
       });
     }
-    if (Number(z) >= 1 && Number(z) <= 86) {
-      assert(typeof props.electronConfiguration === "string" && props.electronConfiguration.length > 0, `Z=${z} electronConfiguration required for batch 4.`);
+    if (Number(z) >= 1 && Number(z) <= 118) {
+      assert(typeof props.electronConfiguration === "string" && props.electronConfiguration.length > 0, `Z=${z} electronConfiguration required for confirmed set.`);
       assert(Array.isArray(props.sourceRefs?.electronConfiguration), `Z=${z} sourceRefs.electronConfiguration is required.`);
+    }
+    if (Number(z) === 119 || Number(z) === 120) {
+      assert((props.electronConfiguration ?? null) === null, `Z=${z} electronConfiguration must remain null for future placeholders.`);
+      assert(!props.sourceRefs?.electronConfiguration, `Z=${z} sourceRefs.electronConfiguration should be absent for future placeholders.`);
     }
     if (props.sourceRefs) {
       Object.entries(props.sourceRefs).forEach(([field, ids]) => {

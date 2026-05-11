@@ -109,3 +109,5 @@ v2.7 expands electronConfiguration coverage through element 36 (Kr), with source
 v2.8 expands electronConfiguration coverage through element 54 (Xe), with sourceRefs and regression tests for key transition-metal configurations. Later elements remain null-safe until curated.
 
 v2.9 expands electronConfiguration coverage through element 86 (Rn), with sourceRefs and regression tests for key lanthanide/heavy-element configurations. Later elements remain null-safe until curated.
+
+v3.0 completes electronConfiguration coverage for confirmed elements 1–118, with sourceRefs and regression tests. Elements 119 and 120 remain future/unconfirmed ghost nodes with null electronConfiguration. Actinide and superheavy configurations should be treated as staged display data pending further source-specific review.

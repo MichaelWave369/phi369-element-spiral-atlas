@@ -1,7 +1,7 @@
 import React from "react";
 import ElementSpiralAtlas from "./phi369ElementSpiralAtlas.jsx";
 
-const BUILD_LABEL = "v2.9";
+const BUILD_LABEL = "v3.0";
 
 class AtlasErrorBoundary extends React.Component {
   constructor(props) {
