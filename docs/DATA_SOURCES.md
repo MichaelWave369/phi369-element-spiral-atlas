@@ -92,3 +92,5 @@ electronConfiguration completion values reference:
 - pubchem
 
 Actinide and superheavy notation may vary by source or prediction model. Future versions should add source-specific notes, retrieval dates per field batch, and notation-difference notes.
+
+Source registry: `src/data/propertySources.js`.

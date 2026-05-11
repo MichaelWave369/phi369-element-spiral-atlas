@@ -76,3 +76,21 @@
 - [ ] 119/120 electronConfiguration remains null
 - [ ] 119/120 sourceRefs.electronConfiguration remains absent/null
 - [ ] key actinide/superheavy regression values tested
+
+
+## v3.0.0-electron-config-complete checklist
+
+- [ ] npm test passes
+- [ ] npm run build passes
+- [ ] npm run check passes
+- [ ] npm run diagnose passes
+- [ ] GitHub Pages deploy succeeds
+- [ ] Live demo loads
+- [ ] Runtime fallback still displays build label if forced
+- [ ] electronConfiguration coverage through Z=118 tested
+- [ ] 119/120 electronConfiguration remains null
+- [ ] 119/120 sourceRefs.electronConfiguration remains absent/null
+- [ ] actinide/superheavy caveats documented
+- [ ] release notes updated
+- [ ] changelog updated
+- [ ] tag ready to create: v3.0.0-electron-config-complete

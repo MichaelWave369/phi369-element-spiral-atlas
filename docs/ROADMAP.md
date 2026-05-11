@@ -135,4 +135,5 @@
 - Add per-batch retrieval-date notes
 - Add notation-difference notes for actinides/superheavy elements
 - Add optional data review table
+- Audit sourceRefs coverage
 - Begin next curated field family after electronConfiguration
