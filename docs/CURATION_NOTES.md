@@ -49,3 +49,58 @@ v2.6 adds:
 
 Boundary:
 Electron configurations remain incomplete outside elements 1–18. Missing values remain null and should not be guessed.
+
+
+## v2.7 Electron Configuration Batch 2
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr).
+
+Scope:
+- elements 1–36 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Kr are intentionally not filled in this pass.
+
+
+## v2.8 Electron Configuration Batch 3
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe).
+
+Scope:
+- elements 1–54 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key exception/reference elements in the 37–54 range include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Electron configurations beyond Xe are intentionally not filled in this pass.
+
+
+## v2.9 Electron Configuration Batch 4
+
+v2.9 expands electronConfiguration coverage through element 86 (Rn).
+
+Scope:
+- elements 1–86 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for the covered batch
+- key f-block and heavy-element reference entries include sourceNotes
+- later elements remain null until future curated batches
+
+Boundary:
+This remains a staged curation process. Some lanthanide and heavy-element configurations can vary by source notation. The v2.9 values use a simplified reference notation and should be verified before being treated as authoritative.
+
+
+## v3.0 Electron Configuration Completion
+
+v3.0 completes electronConfiguration coverage for confirmed elements 1–118.
+
+Scope:
+- confirmed elements 1–118 have electronConfiguration seed values
+- sourceRefs.electronConfiguration is included for confirmed elements
+- key actinide/superheavy reference entries include sourceNotes
+- elements 119 and 120 remain future/unconfirmed ghost placeholders with null electronConfiguration
+
+Boundary:
+This remains staged public-alpha curation. Actinide and superheavy electron configurations may vary by source notation or model. The v3.0 values use simplified reference notation and should be verified before being treated as authoritative.
