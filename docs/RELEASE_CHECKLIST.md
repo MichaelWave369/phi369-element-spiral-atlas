@@ -47,3 +47,50 @@
 - [ ] sourceNotes schema validates
 - [ ] electronConfiguration batch 1 validates
 - [ ] incomplete electronConfiguration fields remain null-safe
+
+- [ ] Runtime fallback displays build label
+- [ ] Error boundary copy-error button works
+- [ ] Reload button works
+- [ ] Source maps remain enabled
+- [ ] Runtime safety docs updated
+- [ ] Array-safe render posture preserved
+
+- [ ] electronConfiguration coverage through Z=36 tested
+- [ ] Cr/Cu exception configurations tested
+- [ ] Kr endpoint tested
+- [ ] later elements remain null-safe
+
+- [ ] electronConfiguration coverage through Z=54 tested
+- [ ] Nb/Mo/Ru/Rh/Pd/Ag configurations tested
+- [ ] Xe endpoint tested
+- [ ] later elements remain null-safe
+
+- [ ] electronConfiguration coverage through Z=86 tested
+- [ ] La/Ce/Gd/Lu/Pt/Au configurations tested
+- [ ] Rn endpoint tested
+- [ ] later elements remain null-safe
+- [ ] lanthanide/heavy notation caveat documented
+
+- [ ] electronConfiguration coverage through Z=118 tested
+- [ ] actinide/superheavy caveats documented
+- [ ] 119/120 electronConfiguration remains null
+- [ ] 119/120 sourceRefs.electronConfiguration remains absent/null
+- [ ] key actinide/superheavy regression values tested
+
+
+## v3.0.0-electron-config-complete checklist
+
+- [ ] npm test passes
+- [ ] npm run build passes
+- [ ] npm run check passes
+- [ ] npm run diagnose passes
+- [ ] GitHub Pages deploy succeeds
+- [ ] Live demo loads
+- [ ] Runtime fallback still displays build label if forced
+- [ ] electronConfiguration coverage through Z=118 tested
+- [ ] 119/120 electronConfiguration remains null
+- [ ] 119/120 sourceRefs.electronConfiguration remains absent/null
+- [ ] actinide/superheavy caveats documented
+- [ ] release notes updated
+- [ ] changelog updated
+- [ ] tag ready to create: v3.0.0-electron-config-complete

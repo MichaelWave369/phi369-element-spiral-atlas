@@ -1204,10 +1204,10 @@ export default function ElementSpiralAtlas() {
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
         <header style={{ textAlign: "center", marginBottom: 18 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, color: "#b45309" }}>
-            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v2.6.2</span><span>✦</span>
+            <span>✦</span><span style={{ letterSpacing: "0.35em", textTransform: "uppercase", fontSize: 13 }}>PHI369 Labs v3.0</span><span>✦</span>
           </div>
           <h1 style={{ margin: "8px 0 0", fontFamily: "Georgia, ui-serif, serif", fontSize: "clamp(38px, 6vw, 68px)", fontWeight: 650, letterSpacing: "0.02em" }}>Element Spiral Atlas</h1>
-          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v2.6.2 research lab, correlation engine, and protocol compiler</p>
+          <p style={{ margin: "8px 0 0", fontSize: 18, color: "#475569" }}>Fibonacci / 369 Harmonic Periodic Table — v3.0 research lab, correlation engine, and protocol compiler</p>
         </header>
 
         <main style={{ display: "grid", gridTemplateColumns: isCompact ? "1fr" : "300px minmax(680px, 1fr) 320px", gap: 16, alignItems: "start" }}>
@@ -1460,7 +1460,7 @@ export default function ElementSpiralAtlas() {
             </details>
 
             <details open style={detailsPanelStyle()}>
-              <summary style={summaryStyle}>v2.6.2 Research Lab</summary>
+              <summary style={summaryStyle}>v3.0 Research Lab</summary>
               <p style={{ margin: "0 0 10px", fontSize: 13, lineHeight: 1.45, color: "#64748b" }}>Compile the current atlas state into an experiment protocol, correlation check, and report-ready receipt.</p>
               <div style={{ display: "grid", gap: 10, fontSize: 12 }}>
                 <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 12, padding: 10 }}>
@@ -1740,7 +1740,7 @@ export default function ElementSpiralAtlas() {
         </section>
 
         <footer style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
-          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v2.6.2 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
+          <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>v3.0 Research Lab</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Adds lab protocols, correlation checks, report compiler, snapshots, and notebook-aware export payloads.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>6 Bands</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Six radial layers compress period-like growth into a readable spiral atlas.</p></section>
           <section style={cardStyle({ padding: 16 })}><h3 style={{ margin: "0 0 6px" }}>9 Nodes</h3><p style={{ margin: 0, color: "#64748b", fontSize: 14 }}>Nine harmonic anchors mark modular families and make the structure easy to scan.</p></section>
         </footer>

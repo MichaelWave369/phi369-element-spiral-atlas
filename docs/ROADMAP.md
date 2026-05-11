@@ -74,3 +74,66 @@
 - Add source notes and retrieval dates per batch
 - Add fixture tests for expanded coverage
 - Keep null-safe incomplete fields
+
+
+## v2.6.3 Runtime Safety
+- Improve error-boundary fallback copy
+- Add reload and copy-error controls
+- Document runtime safety model
+- Preserve source maps for debugging
+- Confirm array-safe rendering posture
+
+
+## v2.7 Electron Configuration Batch 2
+- Expand electronConfiguration coverage through Kr
+- Preserve Cr/Cu ground-state exception values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Add additional exception regression checks
+- Continue staged sourceRefs and sourceNotes
+
+
+## v2.8 Electron Configuration Batch 3
+- Expand electronConfiguration coverage through Xe
+- Preserve Nb/Mo/Ru/Rh/Pd/Ag configuration values
+- Add sourceRefs for covered batch
+- Add validation tests for coverage and exception values
+
+## v2.9 Electron Configuration Batch 4
+- Expand electronConfiguration coverage through Rn
+- Add lanthanide/f-block boundary notes if needed
+- Continue staged sourceRefs and sourceNotes
+- Add additional exception regression checks
+
+
+## v2.9 Electron Configuration Batch 4
+- Expand electronConfiguration coverage through Rn
+- Preserve key lanthanide/heavy-element configuration values
+- Add sourceRefs for covered batch
+- Add sourceNotes for f-block and exception/reference entries
+- Add validation tests for coverage and key values
+
+## v3.0 Electron Configuration Completion
+- Expand electronConfiguration coverage through Og
+- Keep 119/120 ghost placeholders null-safe
+- Add actinide/superheavy notation notes
+- Add additional exception regression checks
+- Prepare data status for full electronConfiguration coverage
+
+
+## v3.0 Electron Configuration Completion
+- Complete electronConfiguration coverage for confirmed elements 1–118
+- Keep 119/120 ghost placeholders null-safe
+- Add actinide/superheavy caveat notes
+- Add sourceRefs for confirmed elements
+- Add regression tests for key values and ghost boundaries
+
+## v3.1 Data Quality Review
+- Add per-batch retrieval-date notes
+- Add notation-difference notes for actinides/superheavy elements
+- Add optional data review table
+- Audit sourceRefs coverage
+- Begin next curated field family after electronConfiguration

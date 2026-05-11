@@ -34,3 +34,10 @@ If the deployed page is blank:
 - check for runtime TypeError or missing asset 404
 - verify Vite base path is /phi369-element-spiral-atlas/
 - verify the React error boundary is rendering any crash message
+
+
+## Runtime fallback
+
+The app includes a React error boundary and static boot fallback. If GitHub Pages shows an atlas error card instead of the app, copy the error details and inspect the browser console. This is usually a UI/data-shape issue, not a Pages deployment failure.
+
+See [Runtime Safety](./RUNTIME_SAFETY.md).

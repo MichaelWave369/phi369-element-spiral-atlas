@@ -96,3 +96,27 @@ npm test
 v2.5 adds simplified phase-at-STP and occurrence coverage for confirmed elements, with sourceRefs and validation tests. Future versions may refine occurrence categories.
 
 v2.6 adds source retrieval metadata and a limited electron-configuration seed batch for elements 1–18. Electron configurations for later elements remain null until curated.
+
+
+## Runtime safety
+
+The public demo includes a static loading fallback, React error boundary, and source maps so runtime data-shape issues can be debugged instead of producing a blank page.
+
+See docs/RUNTIME_SAFETY.md.
+
+v2.7 expands electronConfiguration coverage through element 36 (Kr), with sourceRefs and tests. Later elements remain null-safe until curated.
+
+v2.8 expands electronConfiguration coverage through element 54 (Xe), with sourceRefs and regression tests for key transition-metal configurations. Later elements remain null-safe until curated.
+
+v2.9 expands electronConfiguration coverage through element 86 (Rn), with sourceRefs and regression tests for key lanthanide/heavy-element configurations. Later elements remain null-safe until curated.
+
+v3.0 completes electronConfiguration coverage for confirmed elements 1–118, with sourceRefs and regression tests. Elements 119 and 120 remain future/unconfirmed ghost nodes with null electronConfiguration. Actinide and superheavy configurations should be treated as staged display data pending further source-specific review.
+
+v3.0 marks electronConfiguration as the first complete curated field family for confirmed elements 1–118. Elements 119 and 120 remain future/unconfirmed ghost placeholders with null electronConfiguration. Actinide and superheavy configurations remain staged display data pending future source-specific review.
+
+
+## Current milestone
+
+Current milestone: `v3.0.0-electron-config-complete`
+
+The v3.0 milestone completes electronConfiguration coverage for confirmed elements 1–118 while preserving future/unconfirmed ghost-node boundaries for 119 and 120.
