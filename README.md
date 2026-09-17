@@ -1,6 +1,6 @@
 # PHI369 Element Spiral Atlas
 
-A golden-angle / Fibonacci periodic-table visualization and research-lab interface for exploring chemical families, modular 369 groupings, isotope previews, superheavy frontier nodes, and scientific-property overlays.
+A golden-angle / Fibonacci periodic-table visualization and research-lab interface for exploring chemical families, modular 369 groupings, isotope previews, superheavy frontier nodes, scientific-property overlays, and comparative representations of elemental structure and origin.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Deploy Pages](https://github.com/MichaelWave369/phi369-element-spiral-atlas/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/MichaelWave369/phi369-element-spiral-atlas/actions/workflows/deploy-pages.yml)
@@ -26,6 +26,7 @@ PHI369 Element Spiral Atlas is an experimental visual research interface that re
 - Isotope-preview tools
 - Resonance graph relationships
 - Research notebook / lab-report exports
+- Comparative Element Cosmology Lab for synchronized cross-model inspection
 
 ## What this is not
 
@@ -34,6 +35,8 @@ This project does not replace the standard periodic table.
 This project does not claim discovery of new elements.
 
 This project does not claim that Fibonacci, golden-angle, or 369 geometry proves chemical or nuclear behavior.
+
+Historical models such as Walter Russell's 1926 ten-octave framework are presented as historical models unless a claim is independently supported by modern evidence.
 
 This project is a visualization and research-notebook tool for exploring patterns, asking better questions, and comparing projections against known scientific data.
 
@@ -52,6 +55,22 @@ This project is a visualization and research-notebook tool for exploring pattern
 - Research notebook
 - Export to SVG, PNG, and JSON
 - Lab report compiler
+- Comparative Element Cosmology Lab
+- “Follow an element” cross-model workflow
+- Explicit evidence/authority labels for modern reference data, experimental geometry, historical models, and modern astrophysics
+
+## Comparative Element Cosmology Lab
+
+The v3.1 research module lets one element be followed across four representations while keeping the evidence boundary visible:
+
+1. **Modern periodic reference** — period, group, block, family, and curated atlas properties.
+2. **PHI369 spiral projection** — golden-angle coordinate, radial coordinate, and digital-root lens.
+3. **Walter Russell 1926** — source-attributed historical framework. Element-level mappings remain `not curated` until transcribed from a primary source.
+4. **NASA nucleosynthesis** — simplified source-backed origin summaries. Missing classifications remain `not curated` rather than being inferred.
+
+The module is designed around a simple rule: the element identity is fixed while the representation changes. Geometry, historical placement, and origin models therefore cannot silently overwrite the underlying scientific record.
+
+Initial source-backed seeds include NASA summaries for H, C, O, Fe, and Au, plus Russell's explicit Chapter VI statement describing carbon as a dividing point in his ten-octave cycle.
 
 ## Local development
 
@@ -64,7 +83,6 @@ npm run dev
 
 GitHub Pages is configured to deploy from GitHub Actions using the repository workflow.
 
-
 ## Data status
 
 The current public alpha uses a seeded scientific-property dataset for interface development. Missing values are shown as unknown/null. See docs/DATA_PROVENANCE.md for data boundaries and future data-curation plans.
@@ -72,7 +90,6 @@ The current public alpha uses a seeded scientific-property dataset for interface
 v2.2 expands the property schema for future curated data sources. The app remains null-safe: missing fields render as unknown rather than being guessed.
 
 See docs/DATA_SOURCES.md.
-
 
 v2.3 adds a source registry and curation-status registry. It begins a limited curated seed layer for phase-at-STP and occurrence while preserving null-safe behavior for incomplete fields.
 
@@ -86,6 +103,8 @@ The project includes lightweight Node-based validation tests for:
 - property schema keys
 - source references
 - atlas math helpers
+- comparative-model authority boundaries
+- comparative-model source-backed seed constraints
 
 Run:
 
@@ -93,10 +112,11 @@ Run:
 npm test
 ```
 
+Pull requests also run `npm test` and `npm run build` in GitHub Actions.
+
 v2.5 adds simplified phase-at-STP and occurrence coverage for confirmed elements, with sourceRefs and validation tests. Future versions may refine occurrence categories.
 
 v2.6 adds source retrieval metadata and a limited electron-configuration seed batch for elements 1–18. Electron configurations for later elements remain null until curated.
-
 
 ## Runtime safety
 
@@ -114,9 +134,8 @@ v3.0 completes electronConfiguration coverage for confirmed elements 1–118, wi
 
 v3.0 marks electronConfiguration as the first complete curated field family for confirmed elements 1–118. Elements 119 and 120 remain future/unconfirmed ghost placeholders with null electronConfiguration. Actinide and superheavy configurations remain staged display data pending future source-specific review.
 
-
 ## Current milestone
 
-Current milestone: `v3.0.0-electron-config-complete`
+Current milestone: `v3.1.0-comparative-cosmology-lab`
 
-The v3.0 milestone completes electronConfiguration coverage for confirmed elements 1–118 while preserving future/unconfirmed ghost-node boundaries for 119 and 120.
+The v3.1 milestone adds a source-disciplined comparative layer without changing the core atlas's scientific boundary: one element can be inspected across modern chemistry, PHI369 geometry, Russell's historical model, and modern nucleosynthesis while unknown data remains explicitly uncurated.
