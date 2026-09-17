@@ -27,6 +27,7 @@ PHI369 Element Spiral Atlas is an experimental visual research interface that re
 - Resonance graph relationships
 - Research notebook / lab-report exports
 - Comparative Element Cosmology Lab for synchronized cross-model inspection
+- Relationship Analysis Lab for explicit representation-neighborhood testing
 
 ## What this is not
 
@@ -58,6 +59,8 @@ This project is a visualization and research-notebook tool for exploring pattern
 - Comparative Element Cosmology Lab
 - “Follow an element” cross-model workflow
 - Explicit evidence/authority labels for modern reference data, experimental geometry, historical models, and modern astrophysics
+- Relationship Analysis Lab with PHI-distance neighbors and conventional periodic-group peers
+- Explicit representation-distance experiment contract with randomized/null controls
 
 ## Comparative Element Cosmology Lab
 
@@ -71,6 +74,19 @@ The v3.1 research module lets one element be followed across four representation
 The module is designed around a simple rule: the element identity is fixed while the representation changes. Geometry, historical placement, and origin models therefore cannot silently overwrite the underlying scientific record.
 
 Initial source-backed seeds include NASA summaries for H, C, O, Fe, and Au, plus Russell's explicit Chapter VI statement describing carbon as a dividing point in his ten-octave cycle.
+
+## Relationship Analysis Lab
+
+The v3.1.1 analysis surface asks a narrower, testable question: when two elements are close under one representation, does that proximity correspond to measured chemical similarity more often than expected by chance?
+
+For a selected confirmed element, the lab currently exposes:
+
+1. **Nearest PHI neighbors** — elements ranked by Euclidean distance between golden-angle coordinates derived from atomic number.
+2. **Standard group peers** — confirmed elements sharing the same conventional periodic-table group.
+3. **Experiment contract** — a defined path for comparing representation distance with measured-property similarity while using shuffled placements and controls for atomic number, period, group, and block.
+4. **Russell-distance hold** — no Russell distance is calculated until primary-source chart positions are transcribed into machine-readable coordinates. Missing historical geometry stays unavailable rather than being guessed.
+
+The analysis surface preserves the same authority rule as the rest of the project: a correlation can justify further investigation, but does not establish that the representation is a causal theory of matter.
 
 ## Local development
 
@@ -105,6 +121,9 @@ The project includes lightweight Node-based validation tests for:
 - atlas math helpers
 - comparative-model authority boundaries
 - comparative-model source-backed seed constraints
+- PHI relationship-analysis coordinates and distances
+- nearest-neighbor and periodic-group peer behavior
+- representation-experiment authority boundaries
 
 Run:
 
@@ -136,6 +155,6 @@ v3.0 marks electronConfiguration as the first complete curated field family for 
 
 ## Current milestone
 
-Current milestone: `v3.1.0-comparative-cosmology-lab`
+Current milestone: `v3.1.1-relationship-analysis`
 
-The v3.1 milestone adds a source-disciplined comparative layer without changing the core atlas's scientific boundary: one element can be inspected across modern chemistry, PHI369 geometry, Russell's historical model, and modern nucleosynthesis while unknown data remains explicitly uncurated.
+The v3.1.1 milestone extends the source-disciplined comparative lab with explicit neighborhood analysis: PHI geometric proximity can now be inspected beside conventional group membership, while the planned distance-vs-chemical-similarity experiment remains bounded by null models, measured-property inputs, and an explicit hold on untranscribed Russell coordinates.
