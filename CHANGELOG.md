@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.1.1-relationship-analysis
+
+- Added a dedicated Relationship Analysis Lab surface.
+- Added deterministic PHI-coordinate and PHI-distance helpers derived from atomic number.
+- Added nearest-neighbor ranking in PHI369 geometry.
+- Added conventional periodic-group peer comparison for the same selected element.
+- Added an explicit representation-distance experiment contract for comparing geometric proximity with measured chemical similarity.
+- Russell distance remains unavailable until primary-source chart positions are transcribed into machine-readable data.
+- Added null-model/control requirements and preserved the rule that correlation does not confer causal authority.
+- Added regression tests for PHI coordinates, distances, neighbor ranking, group peers, and experiment-boundary behavior.
+
 ## v3.1.0-comparative-cosmology-lab
 
 - Added a top-level Comparative Element Cosmology Lab beside the existing Spiral Atlas.
