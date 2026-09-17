@@ -1,8 +1,9 @@
 import React from "react";
 import ElementSpiralAtlas from "./phi369ElementSpiralAtlas.jsx";
 import ComparativeElementLab from "./ComparativeElementLab.jsx";
+import ComparativeRelationshipAnalysis from "./ComparativeRelationshipAnalysis.jsx";
 
-const BUILD_LABEL = "v3.1-comparative-lab";
+const BUILD_LABEL = "v3.1.1-relationship-analysis";
 
 class AtlasErrorBoundary extends React.Component {
   constructor(props) {
@@ -120,8 +121,15 @@ export default function App() {
         >
           <SurfaceButton active={surface === "atlas"} onClick={() => setSurface("atlas")}>Spiral Atlas</SurfaceButton>
           <SurfaceButton active={surface === "compare"} onClick={() => setSurface("compare")}>Comparative Cosmology Lab</SurfaceButton>
+          <SurfaceButton active={surface === "relationships"} onClick={() => setSurface("relationships")}>Relationship Analysis</SurfaceButton>
         </nav>
-        {surface === "compare" ? <ComparativeElementLab /> : <ElementSpiralAtlas />}
+        {surface === "compare" ? (
+          <ComparativeElementLab />
+        ) : surface === "relationships" ? (
+          <ComparativeRelationshipAnalysis />
+        ) : (
+          <ElementSpiralAtlas />
+        )}
       </div>
     </AtlasErrorBoundary>
   );
