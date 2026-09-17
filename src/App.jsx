@@ -1,7 +1,8 @@
 import React from "react";
 import ElementSpiralAtlas from "./phi369ElementSpiralAtlas.jsx";
+import ComparativeElementLab from "./ComparativeElementLab.jsx";
 
-const BUILD_LABEL = "v3.0";
+const BUILD_LABEL = "v3.1-comparative-lab";
 
 class AtlasErrorBoundary extends React.Component {
   constructor(props) {
@@ -73,10 +74,55 @@ class AtlasErrorBoundary extends React.Component {
   }
 }
 
+function SurfaceButton({ active, children, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        border: active ? "1px solid #111827" : "1px solid rgba(148,163,184,0.65)",
+        background: active ? "#111827" : "rgba(255,255,255,0.94)",
+        color: active ? "#ffffff" : "#111827",
+        borderRadius: 999,
+        padding: "8px 12px",
+        fontSize: 12,
+        fontWeight: 800,
+        cursor: "pointer",
+        boxShadow: "0 5px 18px rgba(15,23,42,0.08)",
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function App() {
+  const [surface, setSurface] = React.useState("atlas");
+
   return (
     <AtlasErrorBoundary>
-      <ElementSpiralAtlas />
+      <div style={{ position: "relative" }}>
+        <nav
+          aria-label="Atlas surfaces"
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 8,
+            justifyContent: "center",
+            padding: "10px 14px",
+            background: "rgba(248,241,223,0.92)",
+            borderBottom: "1px solid rgba(217,119,6,0.18)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <SurfaceButton active={surface === "atlas"} onClick={() => setSurface("atlas")}>Spiral Atlas</SurfaceButton>
+          <SurfaceButton active={surface === "compare"} onClick={() => setSurface("compare")}>Comparative Cosmology Lab</SurfaceButton>
+        </nav>
+        {surface === "compare" ? <ComparativeElementLab /> : <ElementSpiralAtlas />}
+      </div>
     </AtlasErrorBoundary>
   );
 }
